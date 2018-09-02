@@ -1,4 +1,4 @@
-package com.rbelcyr.kia.sol.ModbusSlaves;
+package com.rbelcyr.kia.sol.Activities.Simulations.Balls;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

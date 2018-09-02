@@ -1,11 +1,9 @@
-package com.rbelcyr.kia.sol.ModbusSlaves.BallPattern;
+package com.rbelcyr.kia.sol.Activities.Simulations.Balls;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
 
-import com.badlogic.gdx.backends.android.AndroidFragmentApplication;
-import com.rbelcyr.kia.sol.ModbusSlaves.AbstractBallMachineActivity;
+import com.rbelcyr.kia.sol.ModbusSlaves.Balls.BallColorPatternSlave;
 
 
 public class BallColorPatternActivity extends AbstractBallMachineActivity{

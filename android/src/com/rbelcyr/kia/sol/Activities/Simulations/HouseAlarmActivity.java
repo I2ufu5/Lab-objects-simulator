@@ -1,4 +1,4 @@
-package com.rbelcyr.kia.sol.ModbusSlaves.HouseAlarm;
+package com.rbelcyr.kia.sol.Activities.Simulations;
 
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -7,11 +7,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.rbelcyr.kia.sol.ModbusSlaves.HouseAlarm.HouseAlarmModbusSlave;
 import com.rbelcyr.kia.sol.R;
 import com.serotonin.modbus4j.exception.IllegalDataAddressException;
 
 
-public class HouseAlarmSimActivity extends AppCompatActivity {
+public class HouseAlarmActivity extends AppCompatActivity {
 
     private Button window1Button ;
     private Button window2Button ;

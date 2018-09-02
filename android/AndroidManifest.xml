@@ -15,7 +15,7 @@
         android:label="@string/app_name"
         android:theme="@style/Base.Theme.AppCompat.Light">
         <activity
-            android:name="com.rbelcyr.kia.sol.MainActivity"
+            android:name="com.rbelcyr.kia.sol.Activities.MainActivity"
             android:label="@string/app_name" 
             android:screenOrientation="portrait">
             <intent-filter>
@@ -23,9 +23,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ModbusSlaves.BallSorting.BallColorSortingActivity" />
-        <activity android:name=".ModbusSlaves.HouseAlarm.HouseAlarmSimActivity" />
-        <activity android:name=".ModbusSlaves.BallPattern.BallColorPatternActivity" />
+        <activity android:name=".Activities.Simulations.Balls.BallColorSortingActivity" />
+        <activity android:name=".Activities.Simulations.HouseAlarmActivity" />
+        <activity android:name=".Activities.Simulations.Balls.BallColorPatternActivity" />
     </application>
 
 </manifest>

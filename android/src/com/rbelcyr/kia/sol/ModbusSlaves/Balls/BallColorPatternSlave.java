@@ -1,4 +1,4 @@
-package com.rbelcyr.kia.sol.ModbusSlaves.BallPattern;
+package com.rbelcyr.kia.sol.ModbusSlaves.Balls;
 
 import com.rbelcyr.kia.sol.ModbusSlaves.AbstractModbusSlave;
 

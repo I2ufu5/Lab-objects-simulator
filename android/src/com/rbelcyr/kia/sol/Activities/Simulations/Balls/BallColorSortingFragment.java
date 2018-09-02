@@ -1,4 +1,4 @@
-package com.rbelcyr.kia.sol.ModbusSlaves.BallSorting;
+package com.rbelcyr.kia.sol.Activities.Simulations.Balls;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

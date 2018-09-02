@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ModbusSlaves.HouseAlarm.HouseAlarmSimActivity"
+    tools:context=".Activities.Simulations.HouseAlarmActivity"
     android:orientation="vertical">
 
     <LinearLayout
@@ -26,7 +26,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignTop="@+id/doorButton"
                 android:text="Button"
-                android:visibility="visible" />
+                android:visibility="visible"
+                android:layout_alignParentRight="true" />
 
             <Button
                 android:id="@+id/window2Button"
@@ -37,7 +38,9 @@
                 android:layout_marginEnd="95dp"
                 android:layout_marginTop="99dp"
                 android:text="Button"
-                android:visibility="visible" />
+                android:visibility="visible"
+                android:layout_marginRight="95dp"
+                android:layout_alignParentRight="true" />
 
             <Button
                 android:id="@+id/window1Button"
@@ -47,7 +50,9 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="137dp"
                 android:text="Button"
-                android:visibility="visible" />
+                android:visibility="visible"
+                android:layout_marginLeft="137dp"
+                android:layout_alignParentLeft="true" />
 
             <Button
                 android:id="@+id/doorButton"
@@ -58,7 +63,9 @@
                 android:layout_marginBottom="67dp"
                 android:layout_marginStart="67dp"
                 android:text="Button"
-                android:visibility="visible" />
+                android:visibility="visible"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="67dp" />
 
             <Button
                 android:id="@+id/armingButton"
@@ -69,7 +76,9 @@
                 android:layout_marginBottom="0dp"
                 android:layout_marginEnd="62dp"
                 android:text="Button"
-                android:visibility="visible" />
+                android:visibility="visible"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="62dp" />
         </RelativeLayout>
 
     </LinearLayout>

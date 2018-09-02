@@ -1,4 +1,4 @@
-package com.rbelcyr.kia.sol.ModbusSlaves;
+package com.rbelcyr.kia.sol.Activities.Simulations.Balls;
 
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.text.format.Formatter;
 import android.widget.TextView;
 
 import com.badlogic.gdx.backends.android.AndroidFragmentApplication;
-import com.rbelcyr.kia.sol.ModbusSlaves.BallPattern.BallColorPatternFragment;
+import com.rbelcyr.kia.sol.ModbusSlaves.AbstractModbusSlave;
 import com.rbelcyr.kia.sol.R;
 
 public abstract class AbstractBallMachineActivity extends FragmentActivity implements AndroidFragmentApplication.Callbacks {

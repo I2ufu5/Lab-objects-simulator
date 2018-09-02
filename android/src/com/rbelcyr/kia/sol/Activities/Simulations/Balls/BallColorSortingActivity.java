@@ -1,4 +1,4 @@
-package com.rbelcyr.kia.sol.ModbusSlaves.BallSorting;
+package com.rbelcyr.kia.sol.Activities.Simulations.Balls;
 
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.text.format.Formatter;
 import android.widget.TextView;
 
 import com.badlogic.gdx.backends.android.AndroidFragmentApplication;
+import com.rbelcyr.kia.sol.ModbusSlaves.Balls.BallColorSortingSlave;
 import com.rbelcyr.kia.sol.R;
 
 public class BallColorSortingActivity extends FragmentActivity implements AndroidFragmentApplication.Callbacks{

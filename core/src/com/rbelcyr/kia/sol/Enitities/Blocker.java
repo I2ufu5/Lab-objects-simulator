@@ -16,9 +16,27 @@ public class Blocker extends Sprite{
     private Vector2 positionClose;
     public Body body;
 
-    public Blocker(Vector2 positionOpen, Vector2 positionClose) {
-        this.positionOpen = positionOpen;
-        this.positionClose = positionClose;
+    final float PIXELS_TO_METERS = 100f;
+
+    public Blocker(World world, Texture texture, Vector2 positionOpen, Vector2 positionClose, float angle){
+        super(texture);
+
+        BodyDef bodyDef = new BodyDef();
+        bodyDef.type = BodyDef.BodyType.KinematicBody;
+        bodyDef.position.set(positionOpen.x/PIXELS_TO_METERS,positionOpen.y/PIXELS_TO_METERS);
+        Body body = world.createBody(bodyDef);
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(35.0f/PIXELS_TO_METERS, 5.0f/PIXELS_TO_METERS);
+        body.createFixture(shape, 0.0f);
+        body.setTransform(body.getPosition(),(float) Math.toRadians(angle));
+
+        this.setScale(1/PIXELS_TO_METERS,1/PIXELS_TO_METERS);
+        this.setRotation(angle);
+        this.body = body;
+        this.positionOpen = new Vector2(positionOpen.x/PIXELS_TO_METERS,positionOpen.y/PIXELS_TO_METERS);
+        this.positionClose = new Vector2(positionClose.x/PIXELS_TO_METERS,positionClose.y/PIXELS_TO_METERS);
+
+        shape.dispose();
     }
 
     public Vector2 getPositionOpen() {
@@ -41,25 +59,6 @@ public class Blocker extends Sprite{
     public static void draw(Blocker blocker, SpriteBatch batch){
         blocker.updatePosition();
         blocker.draw(batch);
-    }
-
-    public Blocker(World world, Texture texture, Vector2 positionOpen, Vector2 positionClose, float angle){
-        super(texture);
-
-        BodyDef bodyDef = new BodyDef();
-        bodyDef.type = BodyDef.BodyType.KinematicBody;
-        bodyDef.position.set(new Vector2(positionOpen));
-        Body body = world.createBody(bodyDef);
-        PolygonShape shape = new PolygonShape();
-        shape.setAsBox(35.0f, 5.0f);
-        body.createFixture(shape, 0.0f);
-        body.setTransform(body.getPosition(),(float) Math.toRadians(angle));
-
-        this.setRotation(angle);
-        this.body = body;
-        this.positionOpen = positionOpen;
-        this.positionClose = positionClose;
-
     }
 
 }
