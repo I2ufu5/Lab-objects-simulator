@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.rbelcyr.kia.sol" >
-
-
+    package="com.rbelcyr.kia.sol">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-
 
     <application
         android:allowBackup="true"
@@ -15,17 +12,20 @@
         android:label="@string/app_name"
         android:theme="@style/Base.Theme.AppCompat.Light">
         <activity
-            android:name="com.rbelcyr.kia.sol.Activities.MainActivity"
-            android:label="@string/app_name" 
+            android:name=".Activities.MainActivity"
+            android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".Activities.Simulations.Balls.BallColorSortingActivity" />
         <activity android:name=".Activities.Simulations.HouseAlarmActivity" />
         <activity android:name=".Activities.Simulations.Balls.BallColorPatternActivity" />
+        <activity android:name=".Activities.Simulations.HeatObject.HeatObjectActivity" />
+        <activity android:name=".Activities.Simulations.StreetLights.StreetLightsActivity"></activity>
     </application>
 
 </manifest>
