@@ -73,7 +73,6 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
         compile "net.dermetfan.libgdx-utils:libgdx-utils:0.13.4"
         compile "net.dermetfan.libgdx-utils:libgdx-utils-box2d:0.13.4"
-        implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
         compile group: 'org.apache.commons', name: 'commons-math3', version: '3.6.1'
     }
 }

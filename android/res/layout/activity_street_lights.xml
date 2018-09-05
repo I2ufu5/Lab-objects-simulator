@@ -8,118 +8,551 @@
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/ipText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
 
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="5"
-            android:background="@drawable/crossing">
+            android:layout_weight="5">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="124dp"
-                android:layout_marginTop="38dp">
+            <!-- cars -->
 
-                <ImageView
-                    android:id="@+id/v_1"
-                    android:layout_width="17dp"
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/crossing">
+
+                <!-- góra -->
+
+                <RelativeLayout
+                    android:layout_width="15dp"
                     android:layout_height="35dp"
-                    android:background="@drawable/tf_green" />
+                    android:background="@drawable/tf_background"
+                    android:rotation="180"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.46"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.100000024">
 
-                <ImageView
-                    android:id="@+id/v_2"
-                    android:layout_width="17dp"
+                    <ImageView
+                        android:id="@+id/tf_up_3_g"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_green" />
+
+                    <ImageView
+                        android:id="@+id/tf_up_3_y"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_yellow" />
+
+                    <ImageView
+                        android:id="@+id/tf_up_3_r"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_red" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="15dp"
                     android:layout_height="35dp"
-                    android:layout_marginStart="5dp"
-                    android:background="@drawable/tf_green" />
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:background="@drawable/tf_background"
+                    android:rotation="180"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.405"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.100000024">
 
-                <ImageView
-                    android:id="@+id/v_3"
-                    android:layout_width="17dp"
+                    <ImageView
+                        android:id="@+id/tf_up_2_g"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_green" />
+
+                    <ImageView
+                        android:id="@+id/tf_up_2_y"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_yellow" />
+
+                    <ImageView
+                        android:id="@+id/tf_up_2_r"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_red" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="15dp"
                     android:layout_height="35dp"
-                    android:layout_marginStart="5dp"
-                    android:background="@drawable/tf_green" />
+                    android:background="@drawable/tf_background"
+                    android:rotation="180"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.34"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.100000024">
 
-            </LinearLayout>
+                    <ImageView
+                        android:id="@+id/tf_up_1_g"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/tf_green" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="124dp"
-                android:layout_marginTop="38dp">
+                    <ImageView
+                        android:id="@+id/tf_up_1_y"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_yellow" />
 
-                <ImageView
-                    android:id="@+id/v_1"
-                    android:layout_width="17dp"
+                    <ImageView
+                        android:id="@+id/tf_up_1_r"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_red" />
+
+                </RelativeLayout>
+
+                <!-- dol -->
+
+                <RelativeLayout
+                    android:layout_width="15dp"
                     android:layout_height="35dp"
-                    android:background="@drawable/tf_green" />
+                    android:background="@drawable/tf_background"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.655"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.9">
 
-                <ImageView
-                    android:id="@+id/v_2"
-                    android:layout_width="17dp"
+                    <ImageView
+                        android:id="@+id/tf_down_1_g"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_green" />
+
+                    <ImageView
+                        android:id="@+id/tf_down_1_y"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_yellow" />
+
+                    <ImageView
+                        android:id="@+id/tf_down_1_r"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_red" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="15dp"
                     android:layout_height="35dp"
-                    android:layout_marginStart="5dp"
-                    android:background="@drawable/tf_green" />
+                    android:background="@drawable/tf_background"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5925"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.9">
 
-                <ImageView
-                    android:id="@+id/v_3"
-                    android:layout_width="17dp"
+                    <ImageView
+                        android:id="@+id/tf_down_2_g"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_green" />
+
+                    <ImageView
+                        android:id="@+id/tf_down_2_y"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_yellow" />
+
+                    <ImageView
+                        android:id="@+id/tf_down_2_r"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_red" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="15dp"
                     android:layout_height="35dp"
-                    android:layout_marginStart="5dp"
-                    android:background="@drawable/tf_green" />
+                    android:background="@drawable/tf_background"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.535"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.9">
 
-            </LinearLayout>
+                    <ImageView
+                        android:id="@+id/tf_down_3_g"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_green" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="124dp"
-                android:layout_marginTop="38dp">
+                    <ImageView
+                        android:id="@+id/tf_down_3_y"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_yellow" />
 
-                <ImageView
-                    android:id="@+id/v_1"
-                    android:layout_width="17dp"
+                    <ImageView
+                        android:id="@+id/tf_down_3_r"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_red" />
+
+                </RelativeLayout>
+
+                <!-- prawo -->
+
+                <RelativeLayout
+                    android:layout_width="15dp"
                     android:layout_height="35dp"
-                    android:background="@drawable/tf_green" />
+                    android:background="@drawable/tf_background"
+                    android:rotation="-90"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.89"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.3375">
 
-                <ImageView
-                    android:id="@+id/v_2"
-                    android:layout_width="17dp"
+                    <ImageView
+                        android:id="@+id/tf_right_1_g"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_green" />
+
+                    <ImageView
+                        android:id="@+id/tf_right_1_y"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_yellow" />
+
+                    <ImageView
+                        android:id="@+id/tf_right_1_r"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_red" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="15dp"
                     android:layout_height="35dp"
-                    android:layout_marginStart="5dp"
-                    android:background="@drawable/tf_green" />
+                    android:background="@drawable/tf_background"
+                    android:rotation="-90"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.89"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.395">
 
-                <ImageView
-                    android:id="@+id/v_3"
-                    android:layout_width="17dp"
+                    <ImageView
+                        android:id="@+id/tf_right_2_g"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_green" />
+
+                    <ImageView
+                        android:id="@+id/tf_right_2_y"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_yellow" />
+
+                    <ImageView
+                        android:id="@+id/tf_right_2_r"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_red" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="15dp"
                     android:layout_height="35dp"
-                    android:layout_marginStart="5dp"
-                    android:background="@drawable/tf_green" />
+                    android:background="@drawable/tf_background"
+                    android:rotation="-90"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.89"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.46">
 
-            </LinearLayout>
+                    <ImageView
+                        android:id="@+id/tf_right_3_g"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_green" />
+
+                    <ImageView
+                        android:id="@+id/tf_right_3_y"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_yellow" />
+
+                    <ImageView
+                        android:id="@+id/tf_right_3_r"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_red" />
+
+                </RelativeLayout>
+
+                <!-- lewo -->
+
+                <RelativeLayout
+                    android:layout_width="15dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/tf_background"
+                    android:rotation="90"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.115"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.65999997">
+
+                    <ImageView
+                        android:id="@+id/tf_left_1_g"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_green" />
+
+                    <ImageView
+                        android:id="@+id/tf_left_1_y"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_yellow" />
+
+                    <ImageView
+                        android:id="@+id/tf_left_1_r"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_red" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="15dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/tf_background"
+                    android:rotation="90"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.115"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.6">
+
+                    <ImageView
+                        android:id="@+id/tf_left_2_g"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_green" />
+
+                    <ImageView
+                        android:id="@+id/tf_left_2_y"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_yellow" />
+
+                    <ImageView
+                        android:id="@+id/tf_left_2_r"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_red" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="15dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/tf_background"
+                    android:rotation="90"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.115"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.54">
+
+                    <ImageView
+                        android:id="@+id/tf_left_3_g"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_green" />
+
+                    <ImageView
+                        android:id="@+id/tf_left_3_y"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_yellow" />
+
+                    <ImageView
+                        android:id="@+id/tf_left_3_r"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_red" />
+
+                </RelativeLayout>
+
+
+            </android.support.constraint.ConstraintLayout>
+
+            <!-- peds -->
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!-- lewo -->
+
+                <RelativeLayout
+                    android:layout_width="20dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/tf_peds_background"
+                    android:rotation="180"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.23"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/peds_left_g"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_p_green" />
+
+                    <ImageView
+                        android:id="@+id/peds_left_r"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_p_red" />
+
+
+                </RelativeLayout>
+
+                <!-- prawo -->
+
+                <RelativeLayout
+                    android:layout_width="20dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/tf_peds_background"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.78"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/peds_right_g"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_p_green" />
+
+                    <ImageView
+                        android:id="@+id/peds_right_r"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_p_red" />
+
+
+                </RelativeLayout>
+
+                <!-- dół -->
+
+                <RelativeLayout
+                    android:layout_width="20dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/tf_peds_background"
+                    android:rotation="90"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.50"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.77">
+
+                    <ImageView
+                        android:id="@+id/peds_down_g"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_p_green" />
+
+                    <ImageView
+                        android:id="@+id/peds_down_r"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_p_red" />
+
+
+                </RelativeLayout>
+
+                <!-- góra -->
+
+                <RelativeLayout
+                    android:layout_width="20dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/tf_peds_background"
+                    android:rotation="-90"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.50"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.24000001">
+
+                    <ImageView
+                        android:id="@+id/peds_up_g"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_p_green" />
+
+                    <ImageView
+                        android:id="@+id/peds_up_r"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/tf_p_red" />
+
+
+                </RelativeLayout>
+
+
+            </android.support.constraint.ConstraintLayout>
 
         </RelativeLayout>
-
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="2">
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="BUTTON"/>
+
         </LinearLayout>
 
     </LinearLayout>

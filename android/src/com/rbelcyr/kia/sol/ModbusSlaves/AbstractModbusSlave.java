@@ -20,6 +20,7 @@ public abstract class AbstractModbusSlave {
     private boolean isRunning;
     private int coilsQuantity;
     private int inputsQuantity;
+    private int registersQuantity;
 
 
     public AbstractModbusSlave(){
@@ -47,6 +48,14 @@ public abstract class AbstractModbusSlave {
         BasicProcessImage bpi = (BasicProcessImage) tcpSlave.getProcessImage(slaveId);
         for(int offset=0;offset<quantity;offset++){
             bpi.setCoil(offset,false);
+        }
+    }
+
+    protected void addModbusRegister(int quantity){
+        registersQuantity = quantity;
+        BasicProcessImage bpi = (BasicProcessImage) tcpSlave.getProcessImage(slaveId);
+        for(int offset=0;offset<quantity;offset++){
+            bpi.setHoldingRegister(offset,(short) 0);
         }
     }
 
@@ -94,6 +103,15 @@ public abstract class AbstractModbusSlave {
             list.add(tcpSlave.getProcessImage(slaveId).getInput(i));
         }
 
+        return list;
+    }
+
+    public ArrayList<Short> getAllRegisters() throws IllegalDataAddressException{
+        ArrayList<Short> list = new ArrayList<>();
+
+        for(int i=0; i<registersQuantity;i++){
+            list.add(tcpSlave.getProcessImage(slaveId).getHoldingRegister(i));
+        }
         return list;
     }
 

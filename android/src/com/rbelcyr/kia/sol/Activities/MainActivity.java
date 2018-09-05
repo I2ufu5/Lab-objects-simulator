@@ -9,6 +9,7 @@ import android.widget.Button;
 import com.rbelcyr.kia.sol.Activities.Simulations.Balls.BallColorPatternActivity;
 import com.rbelcyr.kia.sol.Activities.Simulations.Balls.BallColorSortingActivity;
 import com.rbelcyr.kia.sol.Activities.Simulations.HouseAlarmActivity;
+import com.rbelcyr.kia.sol.Activities.Simulations.StreetLights.StreetLightsActivity;
 import com.rbelcyr.kia.sol.R;
 
 
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         Button houseAlarmSimButton = (Button) findViewById(R.id.HouseAlarmSimulation);
         Button ballColorSortingSimButton = (Button) findViewById(R.id.ballColorSorting);
         Button ballColorPatternSimButton = (Button) findViewById(R.id.ballColorPattern);
+        Button trafficLightsSimButton = (Button) findViewById(R.id.trafficLights);
 
 
         houseAlarmSimButton.setOnClickListener(new View.OnClickListener() {
@@ -43,6 +45,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(),BallColorPatternActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        trafficLightsSimButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(),StreetLightsActivity.class);
                 startActivity(intent);
             }
         });

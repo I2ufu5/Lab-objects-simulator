@@ -3,4 +3,5 @@
     <string name="houseAlarmSimulationButton">System Alarmowy</string>
     <string name="ballColorSortingButton">Sortownica</string>
     <string name="ballColorPatternButton">Wzorek</string>
+    <string name="trafficLights">Skrzyżowanie</string>
 </resources>
