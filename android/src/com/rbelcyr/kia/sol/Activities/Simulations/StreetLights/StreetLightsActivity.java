@@ -1,31 +1,42 @@
 package com.rbelcyr.kia.sol.Activities.Simulations.StreetLights;
 
 import android.net.wifi.WifiManager;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.Formatter;
+import android.util.Log;
+import android.util.TimeFormatException;
 import android.view.View;
 import android.widget.TextView;
 
 import com.rbelcyr.kia.sol.ModbusSlaves.TrafficLightsModbusSlave;
 import com.rbelcyr.kia.sol.R;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class StreetLightsActivity extends AppCompatActivity {
 
     TrafficLightsController trafficLightsController;
     TrafficLightsModbusSlave trafficLightsModbusSlave;
-    TextView ipText;
+    TextView ipText,register1,register2,register3;
     String ip;
+    Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_street_lights);
 
-        ipText = (TextView) findViewById(R.id.ipText);
         trafficLightsModbusSlave = new TrafficLightsModbusSlave();
         trafficLightsController = new TrafficLightsController(this.getWindow().getDecorView().getRootView());
-
+        ipText = (TextView) findViewById(R.id.ipText);
+        register1 = (TextView) findViewById(R.id.register1);
+        register2 = (TextView) findViewById(R.id.register2);
+        register3 = (TextView) findViewById(R.id.register3);
+        handler = new Handler();
 
         try {
             trafficLightsModbusSlave.startSlaveListener();
@@ -37,19 +48,35 @@ public class StreetLightsActivity extends AppCompatActivity {
         } catch (Exception e) {
             //e.printStackTrace();
         }
-        new Thread(new Runnable() {
+
+
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                while (true){
-                    try {
-                        trafficLightsController.update(trafficLightsModbusSlave.getAllRegisters());
-                    }catch (Exception e){
-                        //e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            register1.setText(String.valueOf(trafficLightsModbusSlave.getAllRegisters().get(0)));
+                            register2.setText(String.valueOf(trafficLightsModbusSlave.getAllRegisters().get(1)));
+                            register3.setText(String.valueOf(trafficLightsModbusSlave.getAllRegisters().get(2)));
+
+                            trafficLightsController.update(trafficLightsModbusSlave.getAllRegisters());
+                            Log.e("runOnUIThred","TRUE");
+                            handler.postDelayed(this,100);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
-                }
+                });
             }
-        }).start();
+        },100);
+
+
+
+
+
+
+
     }
-
-
 }

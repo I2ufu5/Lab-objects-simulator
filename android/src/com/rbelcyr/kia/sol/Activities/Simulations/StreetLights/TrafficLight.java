@@ -19,22 +19,23 @@ public class TrafficLight {
     }
 
     public void setGreen(boolean state) {
-        if(state == true)
+        if(state)
             green.setVisibility(View.VISIBLE);
         else
             green.setVisibility(View.INVISIBLE);
 
     }
 
-    public void setYellow(boolean state)throws NullPointerException{
-            if(state == true)
+    public void setYellow(boolean state){
+        if(!(yellow == null))
+            if(state)
                 yellow.setVisibility(View.VISIBLE);
             else
                 yellow.setVisibility(View.INVISIBLE);
     }
 
     public void setRed(boolean state) {
-        if(state == true)
+        if(state)
             red.setVisibility(View.VISIBLE);
         else
             red.setVisibility(View.INVISIBLE);

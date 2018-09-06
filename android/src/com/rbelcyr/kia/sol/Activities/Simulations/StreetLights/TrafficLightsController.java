@@ -250,7 +250,7 @@ public class TrafficLightsController {
     }
 
     private static boolean maskBits(int mask, short register){
-        //Log.e("MASKING BITS", String.valueOf(register));
-        return ((register & mask) != 0);
+        //Log.e("MASKING BITS", String.valueOf(register)+"&"+String.valueOf( (short) mask)+"="+String.valueOf(((register & (short) mask))));
+        return ((register & (short) mask) != 0);
     }
 }

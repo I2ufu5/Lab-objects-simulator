@@ -555,6 +555,24 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/register1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/register2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/register3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
     </LinearLayout>
 
 
