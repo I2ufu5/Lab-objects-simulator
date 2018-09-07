@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">KiaSOL</string>
     <string name="houseAlarmSimulationButton">System Alarmowy</string>
-    <string name="ballColorSortingButton">Sortownica</string>
-    <string name="ballColorPatternButton">Wzorek</string>
+    <string name="ballColorSortingButton">Sortowanie kulek</string>
+    <string name="ballColorPatternButton">Układanie wzoru</string>
     <string name="trafficLights">Skrzyżowanie</string>
+    <string name="heatPlant">Obiekt cieplny</string>
 </resources>

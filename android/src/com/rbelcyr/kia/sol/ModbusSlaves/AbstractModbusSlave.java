@@ -115,6 +115,11 @@ public abstract class AbstractModbusSlave {
         return list;
     }
 
+    public void setRegister(int offset,short value){
+        BasicProcessImage processImage = (BasicProcessImage) tcpSlave.getProcessImage(slaveId);
+        processImage.setHoldingRegister(offset,value);
+    }
+
     public void setInput(int offset, boolean state){
         BasicProcessImage processImage = (BasicProcessImage) tcpSlave.getProcessImage(slaveId);
         processImage.setInput(offset,state);

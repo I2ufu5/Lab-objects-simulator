@@ -48,44 +48,44 @@ public class HouseAlarmActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
+        protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+            super.onPostCreate(savedInstanceState);
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true){
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (true){
 
-                    try {
-                        if(houseAlarmModbusSlave.getAllCoils().get(0))
-                            alarmLightTB.setBackgroundColor(getResources().getColor(R.color.alarmGreen));
-                        else
-                            alarmLightTB.setBackgroundColor(getResources().getColor(R.color.alarmRed));
-                    } catch (IllegalDataAddressException e) {
-                        e.printStackTrace();
-                    }
+                        try {
+                            if(houseAlarmModbusSlave.getAllCoils().get(0))
+                                alarmLightTB.setBackgroundColor(getResources().getColor(R.color.alarmGreen));
+                            else
+                                alarmLightTB.setBackgroundColor(getResources().getColor(R.color.alarmRed));
+                        } catch (IllegalDataAddressException e) {
+                            e.printStackTrace();
+                        }
 
 
-                    try {
-                        if(houseAlarmModbusSlave.getAllCoils().get(1))
-                            alarmSound.setBackgroundColor(getResources().getColor(R.color.alarmGreen));
-                        else
-                            alarmSound.setBackgroundColor(getResources().getColor(R.color.alarmRed));
-                    } catch (IllegalDataAddressException e) {
-                        e.printStackTrace();
-                    }
+                        try {
+                            if(houseAlarmModbusSlave.getAllCoils().get(1))
+                                alarmSound.setBackgroundColor(getResources().getColor(R.color.alarmGreen));
+                            else
+                                alarmSound.setBackgroundColor(getResources().getColor(R.color.alarmRed));
+                        } catch (IllegalDataAddressException e) {
+                            e.printStackTrace();
+                        }
 
-                    try {
-                        if(houseAlarmModbusSlave.getAllCoils().get(2))
-                            alarmOnOff.setBackgroundColor(getResources().getColor(R.color.alarmGreen));
-                        else
-                            alarmOnOff.setBackgroundColor(getResources().getColor(R.color.alarmRed));
-                    } catch (IllegalDataAddressException e) {
-                        e.printStackTrace();
+                        try {
+                            if(houseAlarmModbusSlave.getAllCoils().get(2))
+                                alarmOnOff.setBackgroundColor(getResources().getColor(R.color.alarmGreen));
+                            else
+                                alarmOnOff.setBackgroundColor(getResources().getColor(R.color.alarmRed));
+                        } catch (IllegalDataAddressException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
-            }
-        }).start();
+            }).start();
 
         window1Button.setOnClickListener(new View.OnClickListener() {
             @Override

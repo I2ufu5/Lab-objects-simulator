@@ -24,8 +24,8 @@
         <activity android:name=".Activities.Simulations.Balls.BallColorSortingActivity" />
         <activity android:name=".Activities.Simulations.HouseAlarmActivity" />
         <activity android:name=".Activities.Simulations.Balls.BallColorPatternActivity" />
-        <activity android:name=".Activities.Simulations.HeatObject.HeatObjectActivity" />
-        <activity android:name=".Activities.Simulations.StreetLights.StreetLightsActivity"></activity>
+        <activity android:name=".Activities.Simulations.HeatPlant.HeatPlantActivity" />
+        <activity android:name=".Activities.Simulations.StreetLights.TrafficLightsActivity"></activity>
     </application>
 
 </manifest>

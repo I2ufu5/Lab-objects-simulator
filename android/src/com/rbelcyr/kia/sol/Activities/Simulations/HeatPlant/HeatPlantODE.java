@@ -1,10 +1,10 @@
-package com.rbelcyr.kia.sol.Activities.Simulations.HeatObject;
+package com.rbelcyr.kia.sol.Activities.Simulations.HeatPlant;
 
 import org.apache.commons.math3.exception.DimensionMismatchException;
 import org.apache.commons.math3.exception.MaxCountExceededException;
 import org.apache.commons.math3.ode.FirstOrderDifferentialEquations;
 
-public class HeatObjectODE implements FirstOrderDifferentialEquations{
+public class HeatPlantODE implements FirstOrderDifferentialEquations{
 
     double V,ro,c,U,R;
 

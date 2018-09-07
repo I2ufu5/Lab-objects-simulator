@@ -14,10 +14,4 @@ public class HouseAlarmModbusSlave extends AbstractModbusSlave{
         addModbusCoils(3);
     }
 
-    public boolean getIOState(HouseAlarmAccesNames name) throws IllegalDataAddressException {
-
-        return getAllCoils().get(name.intvalue);
-
-    }
-
 }

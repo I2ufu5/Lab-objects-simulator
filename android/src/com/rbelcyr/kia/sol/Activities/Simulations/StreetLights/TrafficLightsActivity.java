@@ -17,7 +17,7 @@ import com.rbelcyr.kia.sol.R;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class StreetLightsActivity extends AppCompatActivity {
+public class TrafficLightsActivity extends AppCompatActivity {
 
     TrafficLightsController trafficLightsController;
     TrafficLightsModbusSlave trafficLightsModbusSlave;

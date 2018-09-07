@@ -4,31 +4,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_gravity="center"
+    android:gravity="center"
     tools:context=".Activities.MainActivity">
 
     <Button
         android:id="@+id/HouseAlarmSimulation"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/houseAlarmSimulationButton" />
 
     <Button
         android:id="@+id/ballColorSorting"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/ballColorSortingButton" />
 
     <Button
         android:id="@+id/ballColorPattern"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/ballColorPatternButton" />
 
     <Button
         android:id="@+id/trafficLights"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/trafficLights" />
+
+    <Button
+        android:id="@+id/heatPlant"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/heatPlant" />
 
 </LinearLayout>
