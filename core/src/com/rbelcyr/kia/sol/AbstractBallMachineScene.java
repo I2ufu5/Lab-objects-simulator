@@ -187,13 +187,13 @@ public abstract class AbstractBallMachineScene extends ApplicationAdapter {
         batch.setProjectionMatrix(camera.combined);
 
         batch.begin();
-        scene.draw(batch);
+
         Ball.draw(bodies,batch);
         Blocker.draw(S4,batch);
         Blocker.draw(S3,batch);
         Blocker.draw(S2,batch);
         Blocker.draw(S1,batch);
-
+        scene.draw(batch);
 
         //batch.draw(scene,0,0);
         batch.end();
@@ -201,7 +201,7 @@ public abstract class AbstractBallMachineScene extends ApplicationAdapter {
         if(Gdx.input.isTouched()) {
             Ball.applyImpulse(bodies);
         }
-        debugRenderer.render(world, camera.combined);
+        //debugRenderer.render(world, camera.combined);
     }
 
     @Override
