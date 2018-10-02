@@ -5,4 +5,5 @@
     <string name="ballColorPatternButton">Układanie wzoru</string>
     <string name="trafficLights">Skrzyżowanie</string>
     <string name="heatPlant">Obiekt cieplny</string>
+    <string name="symulator_obiekt_w_laboratoryjnych"> Symulator obiektów laboratoryjnych </string>
 </resources>

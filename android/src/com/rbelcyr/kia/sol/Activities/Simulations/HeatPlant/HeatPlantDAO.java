@@ -1,10 +1,14 @@
 package com.rbelcyr.kia.sol.Activities.Simulations.HeatPlant;
 
+import android.content.Context;
+import android.graphics.Color;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 
 import com.badlogic.gdx.utils.Array;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
@@ -21,9 +25,9 @@ public class HeatPlantDAO {
     private LineGraphSeries<DataPoint> seriesTemperature;
     private LineGraphSeries<DataPoint> seriesVoltage;
     private LineGraphSeries<DataPoint> seriesFanRpm;
-    private Calendar calendar = Calendar.getInstance();
     private HeatPlant heatPlant;
     private Handler handler;
+
 
     HeatPlantDAO(GraphView graph, HeatPlant heatPlant){
         this.graph = graph;
@@ -36,19 +40,35 @@ public class HeatPlantDAO {
         seriesFanRpm = new LineGraphSeries<>();
         handler = new Handler();
 
+
     }
 
     private void updateData(){
-        Date d = calendar.getTime();
+        Calendar calendar = Calendar.getInstance();
+        Long d = calendar.getTimeInMillis();
+
+        if(dataTemperature.size()>200)
+            for(int i=1;i<dataTemperature.size();i++){
+            dataTemperature.set(i-1,dataTemperature.get(i));
+            }else
         dataTemperature.add(new DataPoint(d,heatPlant.getRealTemperature()));
         dataVoltage.add(new DataPoint(d,heatPlant.getRealVoltage()));
-        dataFanRpm.add(new DataPoint(d,heatPlant.getRealFanRpm()));
+        dataFanRpm.add(new DataPoint(d,heatPlant.getRealFanRpm()/10));
+
+        graph.getViewport().setMinX(dataTemperature.get(0).getX());
+        graph.getViewport().setMaxX(dataTemperature.get(dataTemperature.size()-1).getX());
+
+        graph.getViewport().setMinY(0);
+
+        graph.getViewport().setMaxY(getMaxValue(dataTemperature)+5);
+
     }
 
     private void updateSeries(){
         seriesFanRpm.resetData(generateSeries(dataFanRpm));
         seriesVoltage.resetData(generateSeries(dataVoltage));
         seriesTemperature.resetData(generateSeries(dataTemperature));
+
     }
 
     private DataPoint[] generateSeries(ArrayList<DataPoint> arrayList){
@@ -61,22 +81,41 @@ public class HeatPlantDAO {
         return dataSet;
     }
 
-    public void setFormat(){
+    public void setFormat(Context context){
         graph.getViewport().setScrollable(true);
         graph.getViewport().setScalable(true);
+        graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setYAxisBoundsManual(true);
-        graph.getViewport().setMaxY(22.0f);
-        graph.getViewport().setMinY(20.0f);
+        graph.getSecondScale().setMinY(0);
+        graph.getSecondScale().setMaxY(250);
+        graph.getSecondScale().addSeries(seriesFanRpm);
+        graph.getSecondScale().addSeries(seriesVoltage);
+        graph.addSeries(seriesTemperature);
+        seriesTemperature.setColor(Color.RED);
+        seriesFanRpm.setColor(Color.GREEN);
+
+        graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(context));
+        graph.getGridLabelRenderer().setNumHorizontalLabels(3);
+        graph.getGridLabelRenderer().setHumanRounding(false);
     }
+
+
     public void start(){
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 updateData();
                 updateSeries();
-                Log.e("CHART UPDATE","ONCE");
                 handler.postDelayed(this,1000);
             }
         },500);
+    }
+
+    public static float getMaxValue(ArrayList<DataPoint> dataPoints){
+        float max=0;
+        for(DataPoint dp :dataPoints){
+            if(dp.getY()>max) max = (float)dp.getY();
+        }
+        return max;
     }
 }

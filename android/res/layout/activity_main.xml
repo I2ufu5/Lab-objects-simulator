@@ -1,40 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center"
+    tools:background="@color/colorPrimary"
     tools:context=".Activities.MainActivity">
 
-    <Button
-        android:id="@+id/HouseAlarmSimulation"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/houseAlarmSimulationButton" />
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="50dp"
+        android:text="@string/symulator_obiekt_w_laboratoryjnych"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textColor="@color/alarmGreen"
+        app:layout_constraintBottom_toTopOf="@+id/trafficLights"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
 
-    <Button
-        android:id="@+id/ballColorSorting"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/ballColorSortingButton" />
-
-    <Button
-        android:id="@+id/ballColorPattern"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/ballColorPatternButton" />
 
     <Button
         android:id="@+id/trafficLights"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/trafficLights" />
+        android:text="@string/trafficLights"
+        app:layout_constraintBottom_toTopOf="@+id/HouseAlarmSimulation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/HouseAlarmSimulation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/houseAlarmSimulationButton"
+        app:layout_constraintBottom_toTopOf="@+id/heatPlant"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/trafficLights" />
 
     <Button
         android:id="@+id/heatPlant"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/heatPlant" />
+        android:text="@string/heatPlant"
+        app:layout_constraintBottom_toTopOf="@+id/ballColorPattern"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/HouseAlarmSimulation" />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/ballColorPattern"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/ballColorPatternButton"
+        app:layout_constraintBottom_toTopOf="@+id/ballColorSorting"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/heatPlant" />
+
+    <Button
+        android:id="@+id/ballColorSorting"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/ballColorSortingButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ballColorPattern" />
+
+
+</android.support.constraint.ConstraintLayout>

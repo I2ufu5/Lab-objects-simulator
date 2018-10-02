@@ -96,7 +96,19 @@ public class BallColorSortingActivity extends FragmentActivity implements Androi
 
 	@Override
 	public void exit() {
-
+        ballColorSortingSlave.stopSlaveListener();
 	}
+
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        ballColorSortingSlave.stopSlaveListener();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        ballColorSortingSlave.stopSlaveListener();
+    }
 
 }

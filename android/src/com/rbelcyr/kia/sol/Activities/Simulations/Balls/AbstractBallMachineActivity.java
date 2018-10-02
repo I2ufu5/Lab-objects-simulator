@@ -95,7 +95,19 @@ public abstract class AbstractBallMachineActivity extends FragmentActivity imple
 
     @Override
     public void exit() {
+        modbusSlave.stopSlaveListener();
+    }
 
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        modbusSlave.stopSlaveListener();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        modbusSlave.stopSlaveListener();
     }
 
 }

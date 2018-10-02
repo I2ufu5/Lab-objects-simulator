@@ -56,7 +56,7 @@ public class HeatPlant {
     public float getRealTemperature(){return temperature;}
 
     private void compute(){
-        temperature = temperature + voltage/5000 + fanRpm/50000;
+        temperature = temperature + voltage/5000 - fanRpm/50000;
     }
 
     public void start(){
@@ -64,6 +64,7 @@ public class HeatPlant {
             @Override
             public void run() {
                 compute();
+                //Log.e("COMPUTING: ","F="+String.valueOf(fanRpm)+"|V:"+String.valueOf(voltage)+"|T="+String.valueOf(temperature));
                 handler.postDelayed(this,50);
             }
         },50);

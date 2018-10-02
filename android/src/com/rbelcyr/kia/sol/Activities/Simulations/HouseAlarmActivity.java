@@ -22,7 +22,7 @@ public class HouseAlarmActivity extends AppCompatActivity {
     private TextView alarmLightTB;
     private TextView alarmSound;
     private TextView alarmOnOff;
-    final HouseAlarmModbusSlave houseAlarmModbusSlave = new HouseAlarmModbusSlave();
+    private HouseAlarmModbusSlave houseAlarmModbusSlave;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +37,8 @@ public class HouseAlarmActivity extends AppCompatActivity {
         alarmLightTB = (TextView) findViewById(R.id.AlarmSwiatlo);
         alarmSound = (TextView) findViewById(R.id.alarmDzwiek);
         alarmOnOff = (TextView) findViewById(R.id.onOffAlarm);
+
+        houseAlarmModbusSlave = new HouseAlarmModbusSlave();
 
         try {
             houseAlarmModbusSlave.startSlaveListener();
@@ -152,10 +154,12 @@ public class HouseAlarmActivity extends AppCompatActivity {
     @Override
     public void onBackPressed(){
         super.onBackPressed();
-        try {
             houseAlarmModbusSlave.stopSlaveListener();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        houseAlarmModbusSlave.stopSlaveListener();
     }
 }

@@ -24,6 +24,7 @@ public class HeatPlantActivity extends AppCompatActivity {
     HeatPlantModbusSlave modbusSlave;
     HeatPlant heatPlant;
     GraphView graph;
+    Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,19 +33,18 @@ public class HeatPlantActivity extends AppCompatActivity {
         TextView ipText = (TextView) findViewById(R.id.ipText);
 
         graph = (GraphView) findViewById(R.id.chart);
+        handler = new Handler();
 
         heatPlant = new HeatPlant();
         heatPlant.start();
 
         heatPlantGraph = new HeatPlantDAO(graph,heatPlant);
-        heatPlantGraph.setFormat();
-        heatPlantGraph.start();
+        heatPlantGraph.setFormat(getApplicationContext());
 
         modbusSlave = new HeatPlantModbusSlave();
 
         try {
             modbusSlave.startSlaveListener();
-            modbusSlave.setRegister(0,(short)512);
 
             WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
             String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
@@ -62,14 +62,39 @@ public class HeatPlantActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                try {
-                    heatPlant.setFanRpm(modbusSlave.getAllRegisters().get(0));
-                    heatPlant.setVoltage(modbusSlave.getAllRegisters().get(1));
-                } catch (IllegalDataAddressException e) {
-                    e.printStackTrace();
+                while(true) {
+                    try {
+                        heatPlant.setFanRpm(modbusSlave.getAllRegisters().get(1));
+                        heatPlant.setVoltage(modbusSlave.getAllRegisters().get(0));
+                    } catch (IllegalDataAddressException e) {
+                        e.printStackTrace();
+                    }
                 }
 
             }
         }).start();
+
+        runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            heatPlantGraph.start();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+        });
+    }
+
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        modbusSlave.stopSlaveListener();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        modbusSlave.stopSlaveListener();
     }
 }

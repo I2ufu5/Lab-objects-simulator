@@ -72,11 +72,17 @@ public class TrafficLightsActivity extends AppCompatActivity {
             }
         },100);
 
+    }
 
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        trafficLightsModbusSlave.stopSlaveListener();
+    }
 
-
-
-
-
+    @Override
+    protected void onStop() {
+        super.onStop();
+        trafficLightsModbusSlave.stopSlaveListener();
     }
 }
