@@ -195,7 +195,6 @@ public abstract class AbstractBallMachineScene extends ApplicationAdapter {
         Blocker.draw(S1,batch);
         scene.draw(batch);
 
-        //batch.draw(scene,0,0);
         batch.end();
 
         if(Gdx.input.isTouched()) {

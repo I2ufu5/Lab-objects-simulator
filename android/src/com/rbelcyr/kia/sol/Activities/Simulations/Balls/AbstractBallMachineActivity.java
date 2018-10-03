@@ -14,7 +14,7 @@ public abstract class AbstractBallMachineActivity extends FragmentActivity imple
 
     protected AbstractModbusSlave modbusSlave;
     TextView ipText;
-    protected BallColorPatternFragment libgdxFragment;
+    protected AbstractBallFragment libgdxFragment;
     String ip;
 
     @Override

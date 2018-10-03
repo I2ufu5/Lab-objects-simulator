@@ -41,7 +41,7 @@ public class HeatPlantActivity extends AppCompatActivity {
         heatPlantGraph = new HeatPlantDAO(graph,heatPlant);
         heatPlantGraph.setFormat(getApplicationContext());
 
-        modbusSlave = new HeatPlantModbusSlave();
+        modbusSlave = new HeatPlantModbusSlave(getApplicationContext());
 
         try {
             modbusSlave.startSlaveListener();

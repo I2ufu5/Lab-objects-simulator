@@ -38,7 +38,7 @@ public class HouseAlarmActivity extends AppCompatActivity {
         alarmSound = (TextView) findViewById(R.id.alarmDzwiek);
         alarmOnOff = (TextView) findViewById(R.id.onOffAlarm);
 
-        houseAlarmModbusSlave = new HouseAlarmModbusSlave();
+        houseAlarmModbusSlave = new HouseAlarmModbusSlave(getApplicationContext());
 
         try {
             houseAlarmModbusSlave.startSlaveListener();

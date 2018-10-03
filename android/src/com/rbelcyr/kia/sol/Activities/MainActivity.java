@@ -1,6 +1,7 @@
 package com.rbelcyr.kia.sol.Activities;
 
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -23,12 +24,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView ipText = (TextView) findViewById(R.id.ipText);
-        Button houseAlarmSimButton = (Button) findViewById(R.id.HouseAlarmSimulation);
-        Button ballColorSortingSimButton = (Button) findViewById(R.id.ballColorSorting);
-        Button ballColorPatternSimButton = (Button) findViewById(R.id.ballColorPattern);
-        Button trafficLightsSimButton = (Button) findViewById(R.id.trafficLights);
-        Button heatPlantSimButton = (Button) findViewById(R.id.heatPlant);
+        TextView ipText = findViewById(R.id.ipText);
+        Button houseAlarmSimButton = findViewById(R.id.HouseAlarmSimulation);
+        Button ballColorSortingSimButton = findViewById(R.id.ballColorSorting);
+        Button ballColorPatternSimButton = findViewById(R.id.ballColorPattern);
+        Button trafficLightsSimButton = findViewById(R.id.trafficLights);
+        Button heatPlantSimButton = findViewById(R.id.heatPlant);
+        FloatingActionButton settingsButton = findViewById(R.id.floatingSettingButton);
 
 
         houseAlarmSimButton.setOnClickListener(new View.OnClickListener() {
@@ -71,6 +73,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(),SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 

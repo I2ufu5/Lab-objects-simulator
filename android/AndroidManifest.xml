@@ -25,7 +25,15 @@
         <activity android:name=".Activities.Simulations.HouseAlarmActivity" />
         <activity android:name=".Activities.Simulations.Balls.BallColorPatternActivity" />
         <activity android:name=".Activities.Simulations.HeatPlant.HeatPlantActivity" />
-        <activity android:name=".Activities.Simulations.StreetLights.TrafficLightsActivity"></activity>
+        <activity android:name=".Activities.Simulations.StreetLights.TrafficLightsActivity" />
+        <activity
+            android:name=".Activities.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".Activities.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.rbelcyr.kia.sol.Activities.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

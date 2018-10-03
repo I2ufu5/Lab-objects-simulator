@@ -6,17 +6,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.badlogic.gdx.backends.android.AndroidFragmentApplication;
+import com.rbelcyr.kia.sol.ballPattern;
 import com.rbelcyr.kia.sol.ballSorting;
 
-public class BallColorSortingFragment extends AndroidFragmentApplication{
+public class BallColorSortingFragment extends AbstractBallFragment {
 
-    public ballSorting game;
+    public BallColorSortingFragment() {
+        super.scene = new ballSorting();
+    }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        game = new ballSorting();
-        // return the GLSurfaceView on which libgdx is drawing game stuff
-        return initializeForView(game);
+        return initializeForView(scene);
     }
 
 }

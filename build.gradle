@@ -74,6 +74,7 @@ project(":core") {
         compile "net.dermetfan.libgdx-utils:libgdx-utils:0.13.4"
         compile "net.dermetfan.libgdx-utils:libgdx-utils-box2d:0.13.4"
         compile group: 'org.apache.commons', name: 'commons-math3', version: '3.6.1'
+        compile 'org.apache.commons:commons-lang3:3.8'
     }
 }
 

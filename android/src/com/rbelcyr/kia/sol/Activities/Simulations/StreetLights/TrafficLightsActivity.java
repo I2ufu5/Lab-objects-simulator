@@ -30,7 +30,7 @@ public class TrafficLightsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_street_lights);
 
-        trafficLightsModbusSlave = new TrafficLightsModbusSlave();
+        trafficLightsModbusSlave = new TrafficLightsModbusSlave(getApplicationContext());
         trafficLightsController = new TrafficLightsController(this.getWindow().getDecorView().getRootView());
         ipText = (TextView) findViewById(R.id.ipText);
         register1 = (TextView) findViewById(R.id.register1);

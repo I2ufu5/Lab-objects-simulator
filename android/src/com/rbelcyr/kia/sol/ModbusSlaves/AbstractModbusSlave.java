@@ -1,6 +1,10 @@
 package com.rbelcyr.kia.sol.ModbusSlaves;
 
 
+import android.content.ContentProvider;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.serotonin.modbus4j.BasicProcessImage;
@@ -23,8 +27,8 @@ public abstract class AbstractModbusSlave {
     private int registersQuantity;
 
 
-    public AbstractModbusSlave(){
-        port = 10502;
+    public AbstractModbusSlave(Context context){
+        port = Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(context).getString("port","10502"));
         slaveId = 1;
         tcpSlave = new TcpSlave(port,false);
         try {
