@@ -1,4 +1,4 @@
-package com.rbelcyr.kia.sol.ModbusSlaves.HouseAlarm;
+package com.rbelcyr.kia.sol.ModbusSlaves;
 
 import android.content.Context;
 

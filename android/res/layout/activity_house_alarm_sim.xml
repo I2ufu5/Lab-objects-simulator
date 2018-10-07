@@ -4,88 +4,245 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.Simulations.HouseAlarmActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".Activities.Simulations.HouseAlarmActivity">
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintView"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:background="@drawable/domek"
-        android:orientation="vertical">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        android:background="@drawable/house">
 
 
-            <Button
-                android:id="@+id/movementSensorbutton"
-                android:layout_width="52dp"
-                android:layout_height="102dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignTop="@+id/doorButton"
-                android:text="Button"
-                android:visibility="visible"
-                android:layout_alignParentRight="true" />
+        <Button
+            android:id="@+id/window1Button"
+            android:layout_width="89dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="Button"
+            android:textColor="@android:color/transparent"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.46"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.49" />
 
-            <Button
-                android:id="@+id/window2Button"
-                android:layout_width="41dp"
-                android:layout_height="76dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginEnd="95dp"
-                android:layout_marginTop="99dp"
-                android:text="Button"
-                android:visibility="visible"
-                android:layout_marginRight="95dp"
-                android:layout_alignParentRight="true" />
+        <Button
+            android:id="@+id/window2Button"
+            android:layout_width="41dp"
+            android:layout_height="76dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@android:color/transparent"
+            android:text="Button"
+            android:textColor="@android:color/transparent"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/guideline_window2D"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.74"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline_window2U"
+            app:layout_constraintVertical_bias="0.42000002" />
 
-            <Button
-                android:id="@+id/window1Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="137dp"
-                android:text="Button"
-                android:visibility="visible"
-                android:layout_marginLeft="137dp"
-                android:layout_alignParentLeft="true" />
+        <Button
+            android:id="@+id/armingButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:text="Button"
+            android:textColor="@android:color/transparent"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/lock"
+            app:layout_constraintEnd_toEndOf="@+id/lock"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/lock"
+            app:layout_constraintTop_toTopOf="@+id/lock" />
 
-            <Button
-                android:id="@+id/doorButton"
-                android:layout_width="53dp"
-                android:layout_height="87dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginBottom="67dp"
-                android:layout_marginStart="67dp"
-                android:text="Button"
-                android:visibility="visible"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="67dp" />
+        <Button
+            android:id="@+id/movementSensorbutton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:text="Button"
+            android:textColor="@android:color/transparent"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/buddy"
+            app:layout_constraintEnd_toEndOf="@+id/buddy"
+            app:layout_constraintStart_toStartOf="@+id/buddy"
+            app:layout_constraintTop_toTopOf="@+id/buddy" />
 
-            <Button
-                android:id="@+id/armingButton"
-                android:layout_width="65dp"
-                android:layout_height="85dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginBottom="0dp"
-                android:layout_marginEnd="62dp"
-                android:text="Button"
-                android:visibility="visible"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="62dp" />
-        </RelativeLayout>
+        <Button
+            android:id="@+id/doorButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@android:color/transparent"
+            android:text="Button"
+            android:textColor="@android:color/transparent"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/guideline_doorD"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_doorR"
+            app:layout_constraintHorizontal_bias="0.24"
+            app:layout_constraintStart_toStartOf="@+id/guideline_doorL"
+            app:layout_constraintTop_toTopOf="@+id/guideline_doorU"
+            app:layout_constraintVertical_bias="0.68" />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/lock"
+            android:layout_width="70dp"
+            android:layout_height="80dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/lock_on" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="50dp" />
+        <ImageView
+            android:id="@+id/buddy"
+            android:layout_width="50dp"
+            android:layout_height="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.76"
+            app:srcCompat="@drawable/sensor_on" />
+
+        <ImageView
+            android:id="@+id/window2_open"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="fitXY"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/guideline_window2D"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_window2R"
+            app:layout_constraintHorizontal_bias="0.735"
+            app:layout_constraintStart_toStartOf="@+id/guideline_window2L"
+            app:layout_constraintTop_toTopOf="@+id/guideline_window2U"
+            app:layout_constraintVertical_bias="0.435"
+            app:srcCompat="@drawable/window2_open" />
+
+        <ImageView
+            android:id="@+id/window1_open"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:adjustViewBounds="true"
+            android:cropToPadding="false"
+            android:scaleType="fitXY"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/guideline_window1D"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_window1R"
+            app:layout_constraintStart_toStartOf="@+id/guideline_window1L"
+            app:layout_constraintTop_toTopOf="@+id/guideline_window1U"
+            app:srcCompat="@drawable/window1_open" />
+
+        <ImageView
+            android:id="@+id/door_open"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/guideline_doorD"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_doorR"
+            app:layout_constraintHorizontal_bias="0.2"
+            app:layout_constraintStart_toStartOf="@+id/guideline_doorL"
+            app:layout_constraintTop_toTopOf="@+id/guideline_doorU"
+            app:layout_constraintVertical_bias="0.721"
+            app:srcCompat="@drawable/door_open" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_window1U"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.399" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_window1D"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.57" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_window1L"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.338" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_window1R"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.605" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_window2L"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.65" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_window2R"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.766" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_window2U"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.332" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_window2D"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.57" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_doorL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.175" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_doorR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.3075" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_doorD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.815" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline_doorU"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.4775" />
+
+    </android.support.constraint.ConstraintLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -98,27 +255,27 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Alarm_swiatlo"
+            android:background="@android:color/darker_gray"
             android:gravity="center"
-            android:background="@android:color/darker_gray"/>
+            android:text="Alarm_swiatlo" />
 
         <TextView
             android:id="@+id/alarmDzwiek"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Alarm_dzwiek"
+            android:background="@android:color/darker_gray"
             android:gravity="center"
-            android:background="@android:color/darker_gray"/>
+            android:text="Alarm_dzwiek" />
 
         <TextView
             android:id="@+id/onOffAlarm"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="On/Off alarm"
+            android:background="@android:color/darker_gray"
             android:gravity="center"
-            android:background="@android:color/darker_gray"/>
+            android:text="On/Off alarm" />
     </LinearLayout>
 
 </LinearLayout>

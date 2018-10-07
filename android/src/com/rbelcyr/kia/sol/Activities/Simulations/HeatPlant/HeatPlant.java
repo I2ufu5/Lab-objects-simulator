@@ -25,8 +25,6 @@ public class HeatPlant {
         handler = new Handler();
     }
 
-
-
     public void setVoltage(short inputSignalVoltage) {
         this.voltage = inputSignalVoltage*INPUT_TO_VOLTAGE;
     }
@@ -56,7 +54,7 @@ public class HeatPlant {
     public float getRealTemperature(){return temperature;}
 
     private void compute(){
-        temperature = temperature + voltage/5000 - fanRpm/50000;
+        temperature = temperature + voltage/500 - fanRpm/5000;
     }
 
     public void start(){
