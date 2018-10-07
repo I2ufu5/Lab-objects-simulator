@@ -16,6 +16,8 @@ public abstract class AbstractBallMachineActivity extends FragmentActivity imple
     TextView ipText;
     protected AbstractBallFragment libgdxFragment;
     String ip;
+    Thread thread;
+    boolean threadStopper;
 
     @Override
     public void onCreate (Bundle savedInstanceState) {
@@ -35,7 +37,7 @@ public abstract class AbstractBallMachineActivity extends FragmentActivity imple
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        new Thread(new Runnable() {
+        thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 while (true) {
@@ -85,7 +87,8 @@ public abstract class AbstractBallMachineActivity extends FragmentActivity imple
                     }
                 }
             }
-        }).start();
+        });
+        thread.start();
 
         getSupportFragmentManager().beginTransaction().
                 add(R.id.game_frame, libgdxFragment).
@@ -96,6 +99,7 @@ public abstract class AbstractBallMachineActivity extends FragmentActivity imple
     @Override
     public void exit() {
         modbusSlave.stopSlaveListener();
+        thread.interrupt();
     }
 
     @Override

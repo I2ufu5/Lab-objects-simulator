@@ -12,6 +12,7 @@ import com.serotonin.modbus4j.Modbus;
 import com.serotonin.modbus4j.exception.IllegalDataAddressException;
 import com.serotonin.modbus4j.exception.ModbusInitException;
 import com.serotonin.modbus4j.ip.IpParameters;
+import com.serotonin.modbus4j.ip.listener.TcpListener;
 import com.serotonin.modbus4j.ip.tcp.TcpSlave;
 
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public abstract class AbstractModbusSlave {
         port = Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(context).getString("port","10502"));
         slaveId = 1;
         tcpSlave = new TcpSlave(port,false);
+
         try {
             tcpSlave.addProcessImage(new BasicProcessImage(slaveId));
         }catch (NullPointerException e) {

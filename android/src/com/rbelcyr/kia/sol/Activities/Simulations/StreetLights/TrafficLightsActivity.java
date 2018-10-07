@@ -24,6 +24,8 @@ public class TrafficLightsActivity extends AppCompatActivity {
     TextView ipText,register1,register2,register3;
     String ip;
     Handler handler;
+    boolean handlerRunning;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,7 @@ public class TrafficLightsActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                handlerRunning = true;
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -62,7 +65,11 @@ public class TrafficLightsActivity extends AppCompatActivity {
                             register3.setText(String.valueOf(trafficLightsModbusSlave.getAllRegisters().get(2)));
 
                             trafficLightsController.update(trafficLightsModbusSlave.getAllRegisters());
-                            Log.e("runOnUIThred","TRUE");
+
+                            if(!handlerRunning){
+                                throw new Exception("OnBackPressedStopper");
+                            }
+
                             handler.postDelayed(this,100);
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -78,6 +85,7 @@ public class TrafficLightsActivity extends AppCompatActivity {
     public void onBackPressed(){
         super.onBackPressed();
         trafficLightsModbusSlave.stopSlaveListener();
+        handlerRunning = false;
     }
 
     @Override

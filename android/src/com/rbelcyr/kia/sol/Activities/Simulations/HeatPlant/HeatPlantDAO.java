@@ -7,11 +7,17 @@ import android.util.Log;
 import android.view.View;
 
 import com.badlogic.gdx.utils.Array;
+import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.LabelFormatter;
+import com.jjoe64.graphview.Viewport;
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+import java.text.DateFormat;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -47,17 +53,18 @@ public class HeatPlantDAO {
         Calendar calendar = Calendar.getInstance();
         Long d = calendar.getTimeInMillis();
 
-        if(dataTemperature.size()>200)
+        if(dataTemperature.size()>20)
             for(int i=1;i<dataTemperature.size();i++){
             dataTemperature.set(i-1,dataTemperature.get(i));
             }else
+
         dataTemperature.add(new DataPoint(d,heatPlant.getRealTemperature()));
         dataVoltage.add(new DataPoint(d,heatPlant.getRealVoltage()));
         dataFanRpm.add(new DataPoint(d,heatPlant.getRealFanRpm()/10));
 
-        graph.getViewport().setMinX(dataTemperature.get(0).getX());
-        graph.getViewport().setMaxX(dataTemperature.get(dataTemperature.size()-1).getX());
-
+            graph.getViewport().setMinX(dataTemperature.get(0).getX());
+        if(dataTemperature.size()>20) graph.getViewport().setMaxX(dataTemperature.get(dataTemperature.size()-1).getX());
+        else                           graph.getViewport().setMaxX(dataTemperature.get(0).getX()+20000);
         graph.getViewport().setMinY(0);
 
         graph.getViewport().setMaxY(getMaxValue(dataTemperature)+5);
@@ -94,9 +101,29 @@ public class HeatPlantDAO {
         seriesTemperature.setColor(Color.RED);
         seriesFanRpm.setColor(Color.GREEN);
 
-        graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(context));
-        graph.getGridLabelRenderer().setNumHorizontalLabels(3);
-        graph.getGridLabelRenderer().setHumanRounding(false);
+        LabelFormatter formatter = new LabelFormatter() {
+            @Override
+            public String formatLabel(double value, boolean isValueX) {
+
+                if(isValueX) {
+                    Date currentDate = new Date((long)value);
+
+                    DateFormat df = new SimpleDateFormat("HH:mm:ss");
+
+                    return df.format(currentDate);
+                }
+                return String.valueOf(value);
+            }
+
+            @Override
+            public void setViewport(Viewport viewport) {
+
+            }
+        };
+
+        graph.getGridLabelRenderer().setLabelFormatter(formatter);
+        graph.getGridLabelRenderer().setNumHorizontalLabels(4);
+        graph.getGridLabelRenderer().setPadding(50);
     }
 
 

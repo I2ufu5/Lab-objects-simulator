@@ -25,6 +25,7 @@ public class HeatPlantActivity extends AppCompatActivity {
     HeatPlant heatPlant;
     GraphView graph;
     Handler handler;
+    Thread thread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class HeatPlantActivity extends AppCompatActivity {
 
         try {
             modbusSlave.startSlaveListener();
+            modbusSlave.setRegister(1,(short)100);
 
             WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
             String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
@@ -59,26 +61,30 @@ public class HeatPlantActivity extends AppCompatActivity {
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        new Thread(new Runnable() {
+
+        thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 while(true) {
                     try {
                         heatPlant.setFanRpm(modbusSlave.getAllRegisters().get(1));
                         heatPlant.setVoltage(modbusSlave.getAllRegisters().get(0));
-                    } catch (IllegalDataAddressException e) {
+
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
 
             }
-        }).start();
+        });
+        thread.start();
 
         runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         try {
                             heatPlantGraph.start();
+
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -90,6 +96,7 @@ public class HeatPlantActivity extends AppCompatActivity {
     public void onBackPressed(){
         super.onBackPressed();
         modbusSlave.stopSlaveListener();
+        thread.interrupt();
     }
 
     @Override
