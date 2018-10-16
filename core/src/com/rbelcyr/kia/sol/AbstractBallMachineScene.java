@@ -20,7 +20,7 @@ public abstract class AbstractBallMachineScene extends ApplicationAdapter {
     SpriteBatch batch;
     Texture ballBlack,ballWhite;
     Texture sceneTex;
-    Texture blockerTex;
+    Texture blockerTexRight,blockerTexLeft;
     World world;
     Box2DDebugRenderer debugRenderer;
     OrthographicCamera camera;
@@ -40,7 +40,8 @@ public abstract class AbstractBallMachineScene extends ApplicationAdapter {
 
         ballBlack = new Texture("textures/ballBlack.png");
         ballWhite = new Texture("textures/ballWhite.png");
-        blockerTex = new Texture("textures/blocker.png");
+        blockerTexRight = new Texture("textures/blockerRight.png");
+        blockerTexLeft = new Texture("textures/blockerLeft.png");
 
         Box2D.init();
 
@@ -176,7 +177,7 @@ public abstract class AbstractBallMachineScene extends ApplicationAdapter {
 
     @Override
     public void render () {
-        Gdx.gl.glClearColor(0.5f, 0.5f, 0.5f, 1);
+        Gdx.gl.glClearColor(0.2f, 0.5f, 0.7f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         camera.update();
@@ -188,13 +189,13 @@ public abstract class AbstractBallMachineScene extends ApplicationAdapter {
 
         batch.begin();
 
+
         Ball.draw(bodies,batch);
         Blocker.draw(S4,batch);
         Blocker.draw(S3,batch);
         Blocker.draw(S2,batch);
         Blocker.draw(S1,batch);
         scene.draw(batch);
-
         batch.end();
 
         if(Gdx.input.isTouched()) {
