@@ -1,13 +1,16 @@
 package com.rbelcyr.kia.sol.Enitities;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.rbelcyr.kia.sol.BodyEditorLoader;
 
 import java.lang.reflect.Array;
 
@@ -18,26 +21,45 @@ public class Blocker extends Sprite{
 
     final float PIXELS_TO_METERS = 100f;
 
-    public Blocker(World world, Texture texture, Vector2 positionOpen, Vector2 positionClose, float angle){
+    public Blocker(World world, Texture texture, Vector2 positionOpen, Vector2 positionClose, float angle,boolean left){
         super(texture);
 
-        BodyDef bodyDef = new BodyDef();
-        bodyDef.type = BodyDef.BodyType.KinematicBody;
-        bodyDef.position.set(positionOpen.x/PIXELS_TO_METERS,positionOpen.y/PIXELS_TO_METERS);
-        Body body = world.createBody(bodyDef);
-        PolygonShape shape = new PolygonShape();
-        shape.setAsBox(35.0f/PIXELS_TO_METERS, 5.0f/PIXELS_TO_METERS);
-        body.createFixture(shape, 0.0f);
-        body.setTransform(body.getPosition(),(float) Math.toRadians(angle));
+//        BodyDef bodyDef = new BodyDef();
+//        bodyDef.type = BodyDef.BodyType.KinematicBody;
+//        bodyDef.position.set(positionOpen.x/PIXELS_TO_METERS,positionOpen.y/PIXELS_TO_METERS);
+//        Body body = world.createBody(bodyDef);
+//        PolygonShape shape = new PolygonShape();
+//        shape.setAsBox(35.0f/PIXELS_TO_METERS, 5.0f/PIXELS_TO_METERS);
+//        body.createFixture(shape, 0.0f);
+//        body.setTransform(body.getPosition(),(float) Math.toRadians(angle));
 
-        this.setScale(1/PIXELS_TO_METERS,1/PIXELS_TO_METERS);
+        BodyEditorLoader blockerBody = new BodyEditorLoader(Gdx.files.internal("bodies/sortownica.json"));
+
+        BodyDef bd = new BodyDef();
+        bd.type = BodyDef.BodyType.KinematicBody;
+        bd.position.set(positionOpen);
+        bd.angle = (float)Math.toRadians(angle);
+
+        Body body = world.createBody(bd);
+
+        FixtureDef fd = new FixtureDef();
+        fd.density = 1;
+        fd.friction = 0.1f;
+        fd.restitution = 0.3f;
+
+
+        if(left)
+            blockerBody.attachFixture(body, "blockerLeft", fd, 1);
+        else
+            blockerBody.attachFixture(body, "blockerRight", fd, 1);
+
+        this.setScale(1 / PIXELS_TO_METERS, 1 / PIXELS_TO_METERS);
         this.setRotation(angle);
         this.body = body;
         this.positionOpen = new Vector2(positionOpen.x/PIXELS_TO_METERS,positionOpen.y/PIXELS_TO_METERS);
         this.positionClose = new Vector2(positionClose.x/PIXELS_TO_METERS,positionClose.y/PIXELS_TO_METERS);
 
-        shape.dispose();
-    }
+        }
 
     public Vector2 getPositionOpen() {
         return positionOpen;
@@ -48,8 +70,7 @@ public class Blocker extends Sprite{
     }
 
     private void updatePosition(){
-        super.setPosition(this.body.getPosition().x-this.getTexture().getWidth()/2,this.body.getPosition().y-this.getTexture().getHeight()/2);
-        //super.setRotation(this.body.getPosition().angle());
+        super.setPosition(this.body.getPosition().x-this.getWidth()/2,this.body.getPosition().y-this.getHeight()/2);
     }
 
     /////////////

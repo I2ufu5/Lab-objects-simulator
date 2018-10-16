@@ -42,7 +42,7 @@ public class ballSorting extends AbstractBallMachineScene {
 
 	protected void createSensors(){
 		colorSensor = new Sensor(world,new Vector2(420/PIXELS_TO_METERS,370.0f/PIXELS_TO_METERS));
-		ballSensor = new Sensor(world,new Vector2(420/PIXELS_TO_METERS, 340.0f/PIXELS_TO_METERS));
+		ballSensor = new Sensor(world,new Vector2(420/PIXELS_TO_METERS, 335.0f/PIXELS_TO_METERS));
 	}
 
 	////////////////////////////////
@@ -50,10 +50,10 @@ public class ballSorting extends AbstractBallMachineScene {
 	//////////////////////////////
 
 	protected void createBlockers(){
-		S1 = new Blocker(world,blockerTex,new Vector2(550,260),new Vector2(510,210),60.0f+180);
-		S2 = new Blocker(world,blockerTex,new Vector2(265,260),new Vector2(300,210),-60.0f-180);
-		S3 = new Blocker(world,blockerTex,new Vector2(477.5f,295),new Vector2(425,255),35.0f);
-        S4 = new Blocker(world,blockerTex,new Vector2(365,360),new Vector2(405,360),0);
+		S1 = new Blocker(world,blockerTexLeft,new Vector2(590,193),new Vector2(550,193),0,true);
+		S2 = new Blocker(world,blockerTexRight,new Vector2(210,193),new Vector2(255,193),0,false);
+		S3 = new Blocker(world,blockerTexRight,new Vector2(500,275),new Vector2(450,275),180,false);
+        S4 = new Blocker(world,blockerTexLeft,new Vector2(355,350),new Vector2(390,355),0,true);
 	}
 
 	////////////////////////////////

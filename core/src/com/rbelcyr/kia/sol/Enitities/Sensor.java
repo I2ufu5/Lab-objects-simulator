@@ -24,7 +24,7 @@ public class Sensor{
         sensorDef.position.set(position);
         Body sensorBody = world.createBody(sensorDef);
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(15/PIXELS_TO_METERS,2/PIXELS_TO_METERS);
+        shape.setAsBox(15/PIXELS_TO_METERS,7/PIXELS_TO_METERS);
         FixtureDef sensorFix = new FixtureDef();
         sensorFix.shape = shape;
         sensorFix.isSensor = true;

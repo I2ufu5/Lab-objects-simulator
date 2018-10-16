@@ -30,7 +30,7 @@ public abstract class AbstractModbusSlave {
 
     public AbstractModbusSlave(Context context){
         port = Integer.parseInt(PreferenceManager.getDefaultSharedPreferences(context).getString("port","10502"));
-        slaveId = 1;
+        slaveId = 255;
         tcpSlave = new TcpSlave(port,false);
 
         try {
