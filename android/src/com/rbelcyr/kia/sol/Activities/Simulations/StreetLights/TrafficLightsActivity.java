@@ -89,6 +89,23 @@ public class TrafficLightsActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        trafficLightsModbusSlave.stopSlaveListener();
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        try {
+            trafficLightsModbusSlave.startSlaveListener();
+        }catch (Exception e){
+            Log.e("startSlaveException",e.toString());
+        }
+
+    }
+
+    @Override
     protected void onStop() {
         super.onStop();
         trafficLightsModbusSlave.stopSlaveListener();

@@ -234,17 +234,17 @@ public class TrafficLightsController {
 
 
         set(
-                7,
+                8,
                 maskBits(1,registers.get(2)),
-                maskBits(2,registers.get(2)),
-                maskBits(0,registers.get(2))
+                maskBits(0,registers.get(2)),
+                maskBits(4,registers.get(2))
         );
 
         set(
-                8,
-                maskBits(4,registers.get(2)),
+                7,
                 maskBits(8,registers.get(2)),
-                maskBits(0,registers.get(2))
+                maskBits(0,registers.get(2)),
+                maskBits(32,registers.get(2))
         );
 
     }

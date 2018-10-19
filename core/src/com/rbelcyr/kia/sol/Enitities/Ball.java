@@ -46,8 +46,8 @@ public class Ball extends Sprite {
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = circle;
-        fixtureDef.density = 3.0f;
-        fixtureDef.friction = 0.1f;
+        fixtureDef.density = 5.0f;
+        fixtureDef.friction = 0.01f;
         fixtureDef.restitution = 0.1f;
         Fixture fixture = body.createFixture(fixtureDef);
 

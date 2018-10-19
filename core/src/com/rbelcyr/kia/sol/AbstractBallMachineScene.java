@@ -46,7 +46,7 @@ public abstract class AbstractBallMachineScene extends ApplicationAdapter {
         Box2D.init();
 
         world = new World(new Vector2(0,-9.80f),false);
-        //world.setContinuousPhysics(false);
+        world.setContinuousPhysics(true);
         world.setContactListener(new ContactListener() {
             @Override
             public void beginContact(Contact contact) {

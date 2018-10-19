@@ -1,5 +1,6 @@
 package com.rbelcyr.kia.sol.Activities.Simulations;
 
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -216,6 +217,7 @@ public class HouseAlarmActivity extends AppCompatActivity {
                     try {
                         if(houseAlarmModbusSlave.getAllCoils().get(1))
                             alarmSound.setBackgroundColor(getResources().getColor(R.color.alarmGreen));
+
                         else
                             alarmSound.setBackgroundColor(getResources().getColor(R.color.alarmRed));
                     } catch (IllegalDataAddressException e) {
@@ -236,10 +238,22 @@ public class HouseAlarmActivity extends AppCompatActivity {
         modbusUpdater.start();
     }
 
+
     @Override
     public void onBackPressed(){
         super.onBackPressed();
             houseAlarmModbusSlave.stopSlaveListener();
+    }
+
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        try {
+            houseAlarmModbusSlave.startSlaveListener();
+        }catch (Exception e){
+            Log.e("slaveResumeException",e.toString());
+        }
     }
 
     @Override

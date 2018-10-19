@@ -81,7 +81,7 @@ public abstract class AbstractModbusSlave {
         thread.start();
 
         if(isRunning) synchronized (tcpSlave) {
-            tcpSlave.wait(5000);
+            tcpSlave.wait(500);
             Log.e("TAG","Listener Working");
         }
         else
