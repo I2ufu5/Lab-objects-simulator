@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView ipText = findViewById(R.id.ipText);
         Button houseAlarmSimButton = findViewById(R.id.HouseAlarmSimulation);
         Button ballColorSortingSimButton = findViewById(R.id.ballColorSorting);
         Button ballColorPatternSimButton = findViewById(R.id.ballColorPattern);
@@ -44,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         ballColorSortingSimButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                v.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
                 Intent intent = new Intent(v.getContext(),BallColorSortingActivity.class);
                 startActivity(intent);
             }
@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         ballColorPatternSimButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                v.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
                 Intent intent = new Intent(v.getContext(),BallColorPatternActivity.class);
                 startActivity(intent);
             }

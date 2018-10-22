@@ -237,28 +237,4 @@ public class HouseAlarmActivity extends AppCompatActivity {
         });
         modbusUpdater.start();
     }
-
-
-    @Override
-    public void onBackPressed(){
-        super.onBackPressed();
-            houseAlarmModbusSlave.stopSlaveListener();
-    }
-
-
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
-        try {
-            houseAlarmModbusSlave.startSlaveListener();
-        }catch (Exception e){
-            Log.e("slaveResumeException",e.toString());
-        }
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        houseAlarmModbusSlave.stopSlaveListener();
-    }
 }

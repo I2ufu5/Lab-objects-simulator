@@ -6,15 +6,84 @@
     android:layout_height="match_parent"
     tools:context=".Activities.Simulations.HeatPlant.HeatPlantActivity">
 
-    <TextView
-        android:id="@+id/ipText"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent" />
-
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="300dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@drawable/border"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/guideline8"
+                app:layout_constraintEnd_toStartOf="@+id/guideline5">
+
+                <TextView
+                    android:id="@+id/voltageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:background="@android:color/background_dark"
+                    android:text="TextView"
+                    android:textColor="@android:color/holo_green_light" />
+
+                <ProgressBar
+                    android:id="@+id/voltageProgresBar"
+                    style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline5"
+                    tools:max="230"
+                    tools:min="0" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/border"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/guideline8"
+                app:layout_constraintEnd_toStartOf="@+id/guideline5">
+
+                <TextView
+                    android:id="@+id/flowView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:background="@android:color/background_dark"
+                    android:text="TextView"
+                    android:textColor="@android:color/holo_green_light" />
+
+                <ProgressBar
+                    android:id="@+id/flowProgresBar"
+                    style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:max="200"
+                    tools:min="0" />
+
+            </LinearLayout>
+        </LinearLayout>
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline8"
@@ -23,43 +92,12 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.76" />
 
-        <LinearLayout
-            android:layout_width="70dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/border"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/guideline8"
-            app:layout_constraintEnd_toStartOf="@+id/guideline5">
-
-            <TextView
-                android:id="@+id/voltageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:layout_gravity="center"
-                tools:layout_editor_absoluteX="75dp"
-                tools:layout_editor_absoluteY="187dp" />
-
-            <ProgressBar
-                android:id="@+id/voltageProgresBar"
-                style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintEnd_toStartOf="@+id/guideline5"
-                tools:layout_editor_absoluteY="209dp"
-                tools:max="230"
-                tools:min="0" />
-
-        </LinearLayout>
-
         <android.support.constraint.ConstraintLayout
             android:id="@+id/constraintLayout2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
             android:background="@drawable/water_tank"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline5">
@@ -70,14 +108,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:visibility="visible"
-                app:layout_constraintGuide_percent="0.455" />
+                app:layout_constraintGuide_begin="137dp" />
 
             <android.support.constraint.Guideline
                 android:id="@+id/guideline3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.255" />
+                app:layout_constraintGuide_begin="76dp" />
 
             <ImageView
                 android:id="@+id/heater1"
@@ -135,14 +173,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.35" />
+            app:layout_constraintGuide_percent="0.27" />
 
     </android.support.constraint.ConstraintLayout>
 
     <com.jjoe64.graphview.GraphView
         android:id="@+id/chart"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
         tools:layout_editor_absoluteX="0dp" />
 

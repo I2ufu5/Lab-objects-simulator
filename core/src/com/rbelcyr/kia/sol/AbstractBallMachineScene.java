@@ -35,6 +35,7 @@ public abstract class AbstractBallMachineScene extends ApplicationAdapter {
 
     @Override
     public void create () {
+        Box2D.init();
 
         batch = new SpriteBatch();
 
@@ -43,7 +44,7 @@ public abstract class AbstractBallMachineScene extends ApplicationAdapter {
         blockerTexRight = new Texture("textures/blockerRight.png");
         blockerTexLeft = new Texture("textures/blockerLeft.png");
 
-        Box2D.init();
+
 
         world = new World(new Vector2(0,-9.80f),false);
         world.setContinuousPhysics(true);
@@ -54,14 +55,12 @@ public abstract class AbstractBallMachineScene extends ApplicationAdapter {
                         &
                         contact.getFixtureB().getBody().getUserData() instanceof Ball){
                     colorSensor.setDetectedColor(((Ball) contact.getFixtureB().getBody().getUserData()).color);
-                    Gdx.app.log("CONTACT",colorSensor.getDetectedColor().toString());
                 }
 
                 if(contact.getFixtureA().getBody().getUserData() == ballSensor
                         &
                         contact.getFixtureB().getBody().getUserData() instanceof Ball){
                     ballSensor.setDetectedColor(((Ball) contact.getFixtureB().getBody().getUserData()).color);
-                    Gdx.app.log("CONTACT",ballSensor.getDetectedColor().toString());
                 }
             }
 
@@ -210,6 +209,10 @@ public abstract class AbstractBallMachineScene extends ApplicationAdapter {
         ballBlack.dispose();
         ballWhite.dispose();
         sceneTex.dispose();
+        world.dispose();
+        blockerTexRight.dispose();
+        blockerTexLeft.dispose();
+        debugRenderer.dispose();
     }
 
 

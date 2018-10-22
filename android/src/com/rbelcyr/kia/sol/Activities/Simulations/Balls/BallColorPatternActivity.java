@@ -9,8 +9,6 @@ import com.rbelcyr.kia.sol.ModbusSlaves.Balls.BallColorPatternSlave;
 public class BallColorPatternActivity extends AbstractBallMachineActivity{
 
     public BallColorPatternActivity(){
-        //super.modbusSlave = new BallColorPatternSlave(getApplicationContext());
-        //super.libgdxFragment = new BallColorPatternFragment();
     }
 
     @Override

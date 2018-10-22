@@ -60,7 +60,7 @@ public class HeatPlant {
         return voltage;
     }
 
-    public float getRealFanRpm(){return inputFlow;}
+    public float getRealInputFlow(){return inputFlow;}
 
     public float getRealTemperature(){return outputTemperature;}
 
@@ -70,7 +70,7 @@ public class HeatPlant {
         ode.q = inputFlow;
         dp853.integrate(ode,odeTime,y0,odeTime+timeStep,y0);
         outputTemperature = (float)y0[0];
-        Log.e("TAG", "compute: "+String.valueOf(outputTemperature));
+        //Log.e("TAG", "compute: "+String.valueOf(outputTemperature));
 
         odeTime += timeStep;
     }
@@ -85,5 +85,9 @@ public class HeatPlant {
                 handler.postDelayed(this,50);
             }
         },50);
+    }
+
+    public void stop(){
+        handler.removeCallbacksAndMessages(null);
     }
 }

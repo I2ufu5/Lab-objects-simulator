@@ -3,7 +3,7 @@ package com.rbelcyr.kia.sol.Activities.Simulations.HeatPlant;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Handler;
-import android.util.Log;
+
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.LabelFormatter;
 import com.jjoe64.graphview.Viewport;
@@ -23,9 +23,8 @@ public class HeatPlantDAO {
     private ArrayList<DataPoint> dataFanRpm;
     private LineGraphSeries<DataPoint> seriesTemperature;
     private LineGraphSeries<DataPoint> seriesVoltage;
-    private LineGraphSeries<DataPoint> seriesFanRpm;
+    private LineGraphSeries<DataPoint> seriesInputFlow;
     private HeatPlant heatPlant;
-    private Handler handler;
 
 
     HeatPlantDAO(GraphView graph, HeatPlant heatPlant){
@@ -35,9 +34,11 @@ public class HeatPlantDAO {
         dataFanRpm = new ArrayList<>();
         dataVoltage = new ArrayList<>();
         seriesTemperature = new LineGraphSeries<>();
+        seriesTemperature.setTitle("Temperatura");
         seriesVoltage = new LineGraphSeries<>();
-        seriesFanRpm = new LineGraphSeries<>();
-        handler = new Handler();
+        seriesVoltage.setTitle("Napięcie x[V]");
+        seriesInputFlow = new LineGraphSeries<>();
+        seriesInputFlow.setTitle("Przepływ x[m3/s]/100");
 
 
     }
@@ -61,7 +62,7 @@ public class HeatPlantDAO {
 
         dataTemperature.add(new DataPoint(d,heatPlant.getRealTemperature()));
         dataVoltage.add(new DataPoint(d,heatPlant.getRealVoltage()));
-        dataFanRpm.add(new DataPoint(d,heatPlant.getRealFanRpm()*100));
+        dataFanRpm.add(new DataPoint(d,heatPlant.getRealInputFlow()*100));
 
 
         if(dataTemperature.size()>950){
@@ -74,7 +75,7 @@ public class HeatPlantDAO {
     }
 
     private void updateSeries(){
-        seriesFanRpm.resetData(generateSeries(dataFanRpm));
+        seriesInputFlow.resetData(generateSeries(dataFanRpm));
         seriesVoltage.resetData(generateSeries(dataVoltage));
         seriesTemperature.resetData(generateSeries(dataTemperature));
     }
@@ -85,7 +86,6 @@ public class HeatPlantDAO {
         for(int i=0;i<arrayList.size();i++){
             dataSet[i] = arrayList.get(i);
         }
-       // Log.e("TAG", String.valueOf(dataSet.length));
         return dataSet;
     }
 
@@ -99,12 +99,14 @@ public class HeatPlantDAO {
         graph.getGridLabelRenderer().setHorizontalLabelsAngle(30);
         graph.getSecondScale().setMinY(0);
         graph.getSecondScale().setMaxY(250);
-        graph.getSecondScale().addSeries(seriesFanRpm);
+        graph.getSecondScale().addSeries(seriesInputFlow);
         graph.getSecondScale().addSeries(seriesVoltage);
         graph.addSeries(seriesTemperature);
         seriesTemperature.setColor(Color.RED);
-        seriesFanRpm.setColor(Color.GREEN);
+        seriesInputFlow.setColor(Color.GREEN);
         graph.setBackgroundColor(Color.LTGRAY);
+        graph.getLegendRenderer().setVisible(true);
+        graph.getLegendRenderer().setFixedPosition(0,0);
 
         LabelFormatter formatter = new LabelFormatter() {
             @Override
@@ -119,7 +121,7 @@ public class HeatPlantDAO {
                 }
                 else
 
-                return String.valueOf((int)value);
+                return String.valueOf((int)value+"°C");
             }
 
             @Override
@@ -130,6 +132,20 @@ public class HeatPlantDAO {
 
         graph.getGridLabelRenderer().setLabelFormatter(formatter);
         graph.getGridLabelRenderer().setNumHorizontalLabels(5);
+
+
+        LabelFormatter formatter2 = new LabelFormatter() {
+            @Override
+            public String formatLabel(double value, boolean isValueX) {
+                return String.valueOf(value + "x");
+            }
+
+            @Override
+            public void setViewport(Viewport viewport) {
+
+            }
+        };
+        graph.getSecondScale().setLabelFormatter(formatter2);
     }
 
     public void draw(){

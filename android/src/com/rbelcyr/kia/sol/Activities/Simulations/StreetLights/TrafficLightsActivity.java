@@ -21,8 +21,6 @@ public class TrafficLightsActivity extends AppCompatActivity {
 
     TrafficLightsController trafficLightsController;
     TrafficLightsModbusSlave trafficLightsModbusSlave;
-    TextView ipText,register1,register2,register3;
-    String ip;
     Handler handler;
     boolean handlerRunning;
 
@@ -34,21 +32,13 @@ public class TrafficLightsActivity extends AppCompatActivity {
 
         trafficLightsModbusSlave = new TrafficLightsModbusSlave(getApplicationContext());
         trafficLightsController = new TrafficLightsController(this.getWindow().getDecorView().getRootView());
-        ipText = (TextView) findViewById(R.id.ipText);
-        register1 = (TextView) findViewById(R.id.register1);
-        register2 = (TextView) findViewById(R.id.register2);
-        register3 = (TextView) findViewById(R.id.register3);
         handler = new Handler();
 
         try {
             trafficLightsModbusSlave.startSlaveListener();
 
-            WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
-            ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
-            ipText.setText(ip);
-
         } catch (Exception e) {
-            //e.printStackTrace();
+            e.printStackTrace();
         }
 
 
@@ -60,54 +50,28 @@ public class TrafficLightsActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         try {
-                            register1.setText(String.valueOf(trafficLightsModbusSlave.getAllRegisters().get(0)));
-                            register2.setText(String.valueOf(trafficLightsModbusSlave.getAllRegisters().get(1)));
-                            register3.setText(String.valueOf(trafficLightsModbusSlave.getAllRegisters().get(2)));
-
                             trafficLightsController.update(trafficLightsModbusSlave.getAllRegisters());
 
-                            if(!handlerRunning){
-                                throw new Exception("OnBackPressedStopper");
-                            }
-
-                            handler.postDelayed(this,100);
+                            handler.postDelayed(this,50);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
                 });
             }
-        },100);
+        },50);
 
     }
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         super.onBackPressed();
-        trafficLightsModbusSlave.stopSlaveListener();
-        handlerRunning = false;
+        stop();
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
+    private void stop(){
+        handler.removeCallbacksAndMessages(null);
         trafficLightsModbusSlave.stopSlaveListener();
-    }
 
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
-        try {
-            trafficLightsModbusSlave.startSlaveListener();
-        }catch (Exception e){
-            Log.e("startSlaveException",e.toString());
-        }
-
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        trafficLightsModbusSlave.stopSlaveListener();
     }
 }

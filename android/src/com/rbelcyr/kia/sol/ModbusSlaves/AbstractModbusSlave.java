@@ -26,6 +26,7 @@ public abstract class AbstractModbusSlave {
     private int coilsQuantity;
     private int inputsQuantity;
     private int registersQuantity;
+    private Thread thread;
 
 
     public AbstractModbusSlave(Context context){
@@ -66,7 +67,6 @@ public abstract class AbstractModbusSlave {
     }
 
     public void startSlaveListener() throws InterruptedException{
-        Thread thread;
         thread = new Thread(new Runnable(){
             @Override
             public void run() {
@@ -89,7 +89,13 @@ public abstract class AbstractModbusSlave {
     }
 
     public void stopSlaveListener(){
-        tcpSlave.stop();
+        try {
+            tcpSlave.stop();
+        }catch (Exception e){
+            Log.e("stopingSlaveListener", e.toString());
+        }
+        isRunning = false;
+        thread.interrupt();
     }
 
     public ArrayList<Boolean> getAllCoils() throws IllegalDataAddressException {

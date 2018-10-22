@@ -1,5 +1,6 @@
 package com.rbelcyr.kia.sol.Activities.Simulations.Balls;
 
+import android.content.Intent;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -7,32 +8,23 @@ import android.text.format.Formatter;
 import android.widget.TextView;
 
 import com.badlogic.gdx.backends.android.AndroidFragmentApplication;
+import com.rbelcyr.kia.sol.Activities.MainActivity;
 import com.rbelcyr.kia.sol.ModbusSlaves.AbstractModbusSlave;
 import com.rbelcyr.kia.sol.R;
 
 public abstract class AbstractBallMachineActivity extends FragmentActivity implements AndroidFragmentApplication.Callbacks {
 
     protected AbstractModbusSlave modbusSlave;
-    TextView ipText;
     protected AbstractBallFragment libgdxFragment;
-    String ip;
     Thread thread;
-    boolean threadStopper;
 
     @Override
     public void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ball_scene);
 
-        //libgdxFragment  = new BallColorSortingFragment();
-        ipText = (TextView) findViewById(R.id.ipText);
-
         try {
             modbusSlave.startSlaveListener();
-
-            WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
-            ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
-            ipText.setText(ip);
 
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -95,23 +87,23 @@ public abstract class AbstractBallMachineActivity extends FragmentActivity imple
                 commit();
     }
 
-
     @Override
     public void exit() {
-        modbusSlave.stopSlaveListener();
-        thread.interrupt();
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("EXIT", true);
+        startActivity(intent);
     }
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         super.onBackPressed();
-        modbusSlave.stopSlaveListener();
+        stop();
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
+    private void stop(){
+        thread.interrupt();
         modbusSlave.stopSlaveListener();
+        exit();
     }
-
 }

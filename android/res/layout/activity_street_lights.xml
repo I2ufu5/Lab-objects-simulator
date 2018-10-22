@@ -12,12 +12,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/ipText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
