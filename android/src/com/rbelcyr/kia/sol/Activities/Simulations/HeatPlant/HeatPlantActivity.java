@@ -7,16 +7,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.Formatter;
 import android.util.Log;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.LineGraphSeries;
 import com.rbelcyr.kia.sol.ModbusSlaves.HeatPlantModbusSlave;
 import com.rbelcyr.kia.sol.R;
-import com.serotonin.modbus4j.exception.IllegalDataAddressException;
-
-import java.util.ArrayList;
 
 public class HeatPlantActivity extends AppCompatActivity {
 
@@ -27,11 +24,21 @@ public class HeatPlantActivity extends AppCompatActivity {
     Handler handler;
     Thread thread;
 
+
+    ImageView heater1,heater2;
+    TextView voltageView;
+    ProgressBar voltageProgressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_heat_object);
         TextView ipText = (TextView) findViewById(R.id.ipText);
+
+        heater1 = findViewById(R.id.heater1);
+        heater2 = findViewById(R.id.heater2);
+        voltageView = findViewById(R.id.voltageView);
+        voltageProgressBar = findViewById(R.id.voltageProgresBar);
 
         graph = (GraphView) findViewById(R.id.chart);
         handler = new Handler();
@@ -46,7 +53,7 @@ public class HeatPlantActivity extends AppCompatActivity {
 
         try {
             modbusSlave.startSlaveListener();
-            modbusSlave.setRegister(1,(short)100);
+            modbusSlave.setRegister(1,(short)350);
 
             WifiManager wm = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
             String ip = Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
@@ -67,9 +74,8 @@ public class HeatPlantActivity extends AppCompatActivity {
             public void run() {
                 while(true) {
                     try {
-                        heatPlant.setFanRpm(modbusSlave.getAllRegisters().get(1));
+                        heatPlant.setInputFlow(modbusSlave.getAllRegisters().get(1));
                         heatPlant.setVoltage(modbusSlave.getAllRegisters().get(0));
-
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -79,17 +85,33 @@ public class HeatPlantActivity extends AppCompatActivity {
         });
         thread.start();
 
-        runOnUiThread(new Runnable() {
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         try {
-                            heatPlantGraph.start();
+                            heatPlantGraph.draw();
+
+                            heater1.setAlpha((int)heatPlant.getRealVoltage());
+                            heater2.setAlpha((int)heatPlant.getRealVoltage());
+                            voltageView.setText(String.valueOf((int)heatPlant.getRealVoltage()));
+                            voltageProgressBar.setProgress((int)heatPlant.getRealVoltage());
 
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
-        });
+                });
+                handler.postDelayed(this,20);
+            }
+        },20);
+
+    }
+
+    private void viewUpdate(){
+
     }
 
     @Override
@@ -97,6 +119,17 @@ public class HeatPlantActivity extends AppCompatActivity {
         super.onBackPressed();
         modbusSlave.stopSlaveListener();
         thread.interrupt();
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        try {
+            modbusSlave.startSlaveListener();
+        }catch (Exception e){
+            Log.e("startSlaveError: ",e.toString());
+        }
+
     }
 
     @Override

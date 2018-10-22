@@ -61,7 +61,7 @@ public class HeatPlantDAO {
 
         dataTemperature.add(new DataPoint(d,heatPlant.getRealTemperature()));
         dataVoltage.add(new DataPoint(d,heatPlant.getRealVoltage()));
-        dataFanRpm.add(new DataPoint(d,heatPlant.getRealFanRpm()/10));
+        dataFanRpm.add(new DataPoint(d,heatPlant.getRealFanRpm()*100));
 
 
         if(dataTemperature.size()>950){
@@ -85,7 +85,7 @@ public class HeatPlantDAO {
         for(int i=0;i<arrayList.size();i++){
             dataSet[i] = arrayList.get(i);
         }
-        Log.e("TAG", String.valueOf(dataSet.length));
+       // Log.e("TAG", String.valueOf(dataSet.length));
         return dataSet;
     }
 
@@ -132,15 +132,9 @@ public class HeatPlantDAO {
         graph.getGridLabelRenderer().setNumHorizontalLabels(5);
     }
 
-    public void start(){
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
+    public void draw(){
                 updateData();
                 updateSeries();
-                handler.postDelayed(this,20);
-            }
-        },20);
     }
 
 }
