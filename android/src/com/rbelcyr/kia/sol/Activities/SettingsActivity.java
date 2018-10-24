@@ -20,6 +20,7 @@ import android.support.annotation.RequiresApi;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
+import android.view.WindowManager;
 import android.widget.EditText;
 
 import com.rbelcyr.kia.sol.R;

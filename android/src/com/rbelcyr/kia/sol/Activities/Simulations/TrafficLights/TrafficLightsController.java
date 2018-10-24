@@ -1,15 +1,11 @@
-package com.rbelcyr.kia.sol.Activities.Simulations.StreetLights;
+package com.rbelcyr.kia.sol.Activities.Simulations.TrafficLights;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.rbelcyr.kia.sol.R;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import static android.content.ContentValues.TAG;
 
 public class TrafficLightsController {
 

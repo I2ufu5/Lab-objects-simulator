@@ -1,6 +1,5 @@
-package com.rbelcyr.kia.sol.Activities.Simulations.StreetLights;
+package com.rbelcyr.kia.sol.Activities.Simulations.TrafficLights;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 

@@ -14,7 +14,7 @@ import com.badlogic.gdx.physics.box2d.World;
 public class Sensor{
     final float PIXELS_TO_METERS = 100f;
 
-    Color detectedColor;
+    Color detectedColor = Color.WHITE;
     public Body body;
     public int height = 7;
     public int width = 15;

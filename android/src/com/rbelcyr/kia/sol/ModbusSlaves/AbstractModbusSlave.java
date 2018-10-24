@@ -26,6 +26,7 @@ public abstract class AbstractModbusSlave {
     private int coilsQuantity;
     private int inputsQuantity;
     private int registersQuantity;
+    private int inputRegisterQuantity;
     private Thread thread;
 
 
@@ -63,6 +64,14 @@ public abstract class AbstractModbusSlave {
         BasicProcessImage bpi = (BasicProcessImage) tcpSlave.getProcessImage(slaveId);
         for(int offset=0;offset<quantity;offset++){
             bpi.setHoldingRegister(offset,(short) 0);
+        }
+    }
+
+    protected void addModbusInputRegister(int quantity){
+        inputRegisterQuantity = quantity;
+        BasicProcessImage bpi = (BasicProcessImage) tcpSlave.getProcessImage(slaveId);
+        for(int offset=0;offset<quantity;offset++){
+            bpi.setInputRegister(offset,(short) 0);
         }
     }
 
@@ -127,9 +136,23 @@ public abstract class AbstractModbusSlave {
         return list;
     }
 
+    public ArrayList<Short> getAllInputRegisters() throws IllegalDataAddressException{
+        ArrayList<Short> list = new ArrayList<>();
+
+        for(int i=0; i<inputRegisterQuantity;i++){
+            list.add(tcpSlave.getProcessImage(slaveId).getInputRegister(i));
+        }
+        return list;
+    }
+
     public void setRegister(int offset,short value){
         BasicProcessImage processImage = (BasicProcessImage) tcpSlave.getProcessImage(slaveId);
         processImage.setHoldingRegister(offset,value);
+    }
+
+    public void setInputRegister(int offset,short value){
+        BasicProcessImage processImage = (BasicProcessImage) tcpSlave.getProcessImage(slaveId);
+        processImage.setInputRegister(offset,value);
     }
 
     public void setInput(int offset, boolean state){

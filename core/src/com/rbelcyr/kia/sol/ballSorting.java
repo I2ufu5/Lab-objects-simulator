@@ -41,7 +41,7 @@ public class ballSorting extends AbstractBallMachineScene {
 	//////////////////////////////
 
 	protected void createSensors(){
-		colorSensor = new Sensor(world,new Vector2(385/PIXELS_TO_METERS,390.0f/PIXELS_TO_METERS));
+		colorSensor = new Sensor(world,new Vector2(385/PIXELS_TO_METERS,390.0f/PIXELS_TO_METERS),3,10);
 		ballSensor = new Sensor(world,new Vector2(415/PIXELS_TO_METERS, 325.0f/PIXELS_TO_METERS),20,10);
 	}
 

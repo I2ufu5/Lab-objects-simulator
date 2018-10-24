@@ -20,7 +20,7 @@ public class HeatPlant {
 
     private static float INPUT_TO_VOLTAGE = 0.224609375f;
     private static float INPUT_TO_FLOW = 0.001953125f;
-    private static float INPUT_TO_TEMPERATURE = 0.9765625f;
+    private static float INPUT_TO_TEMPERATURE = 0.09765625f;
 
 
     public HeatPlant(){
@@ -52,8 +52,8 @@ public class HeatPlant {
         return (short) (inputFlow / INPUT_TO_FLOW);
     }
 
-    public short getOutputTemperature() {
-        return (short) (outputTemperature /INPUT_TO_TEMPERATURE);
+    public short getTemperature() {
+        return (short) (outputTemperature / INPUT_TO_TEMPERATURE);
     }
 
     public float getRealVoltage(){
@@ -82,9 +82,9 @@ public class HeatPlant {
 
                 compute();
                 //Log.e("COMPUTING: ","F="+String.valueOf(inputFlow)+"|V:"+String.valueOf(voltage)+"|T="+String.valueOf(outputTemperature));
-                handler.postDelayed(this,50);
+                handler.postDelayed(this,20);
             }
-        },50);
+        },20);
     }
 
     public void stop(){

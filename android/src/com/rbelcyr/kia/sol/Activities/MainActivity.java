@@ -6,14 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.rbelcyr.kia.sol.Activities.Simulations.Balls.BallColorPatternActivity;
 import com.rbelcyr.kia.sol.Activities.Simulations.Balls.BallColorSortingActivity;
-import com.rbelcyr.kia.sol.Activities.Simulations.HeatPlant.HeatPlant;
 import com.rbelcyr.kia.sol.Activities.Simulations.HeatPlant.HeatPlantActivity;
 import com.rbelcyr.kia.sol.Activities.Simulations.HouseAlarmActivity;
-import com.rbelcyr.kia.sol.Activities.Simulations.StreetLights.TrafficLightsActivity;
+import com.rbelcyr.kia.sol.Activities.Simulations.TrafficLights.TrafficLightsActivity;
 import com.rbelcyr.kia.sol.R;
 
 

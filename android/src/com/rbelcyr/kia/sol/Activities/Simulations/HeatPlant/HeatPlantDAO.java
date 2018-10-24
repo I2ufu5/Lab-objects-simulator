@@ -44,11 +44,11 @@ public class HeatPlantDAO {
     }
 
     private void cutOldData(ArrayList<DataPoint> list){
-        if(list.size()>1000){
-            for(int i=1;i<=1000;i++){
+        if(list.size()>302){
+            for(int i=1;i<=302;i++){
                 list.set(i-1,list.get(i));
             }
-            list.remove(1000);
+            list.remove(302);
         }
     }
 
@@ -65,7 +65,7 @@ public class HeatPlantDAO {
         dataFanRpm.add(new DataPoint(d,heatPlant.getRealInputFlow()*100));
 
 
-        if(dataTemperature.size()>950){
+        if(dataTemperature.size()>301){
             graph.getViewport().setMinX(dataTemperature.get(dataTemperature.size()-1).getX()-30000);
             graph.getViewport().setMaxX(dataTemperature.get(dataTemperature.size()-1).getX());
         } else{
@@ -90,7 +90,7 @@ public class HeatPlantDAO {
     }
 
     public void setFormat(Context context){
-        graph.getViewport().setScrollable(true);
+        graph.getViewport().setScrollable(false);
         graph.getViewport().setScalable(false);
         graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setYAxisBoundsManual(true);
@@ -104,7 +104,7 @@ public class HeatPlantDAO {
         graph.addSeries(seriesTemperature);
         seriesTemperature.setColor(Color.RED);
         seriesInputFlow.setColor(Color.GREEN);
-        graph.setBackgroundColor(Color.LTGRAY);
+        graph.setBackgroundColor(Color.WHITE);
         graph.getLegendRenderer().setVisible(true);
         graph.getLegendRenderer().setFixedPosition(0,0);
 

@@ -1,42 +1,39 @@
-package com.rbelcyr.kia.sol.Activities.Simulations.StreetLights;
+package com.rbelcyr.kia.sol.Activities.Simulations.TrafficLights;
 
-import android.net.wifi.WifiManager;
 import android.os.Handler;
-import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.format.Formatter;
-import android.util.Log;
-import android.util.TimeFormatException;
-import android.view.View;
-import android.widget.TextView;
+import android.view.WindowManager;
 
+import com.rbelcyr.kia.sol.Dekorator.DekoratorStreetLights;
 import com.rbelcyr.kia.sol.ModbusSlaves.TrafficLightsModbusSlave;
 import com.rbelcyr.kia.sol.R;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class TrafficLightsActivity extends AppCompatActivity {
 
     TrafficLightsController trafficLightsController;
-    TrafficLightsModbusSlave trafficLightsModbusSlave;
+    TrafficLightsModbusSlave modbusSlave;
     Handler handler;
     boolean handlerRunning;
+    DekoratorStreetLights dekorator;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_street_lights);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-        trafficLightsModbusSlave = new TrafficLightsModbusSlave(getApplicationContext());
+        modbusSlave = new TrafficLightsModbusSlave(getApplicationContext());
+        dekorator = new DekoratorStreetLights(this,modbusSlave);
+        dekorator.initUiElements();
         trafficLightsController = new TrafficLightsController(this.getWindow().getDecorView().getRootView());
+
+
         handler = new Handler();
 
         try {
-            trafficLightsModbusSlave.startSlaveListener();
-
+            modbusSlave.startSlaveListener();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -50,8 +47,8 @@ public class TrafficLightsActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         try {
-                            trafficLightsController.update(trafficLightsModbusSlave.getAllRegisters());
-
+                            trafficLightsController.update(modbusSlave.getAllRegisters());
+                            dekorator.update();
                             handler.postDelayed(this,50);
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -71,7 +68,7 @@ public class TrafficLightsActivity extends AppCompatActivity {
 
     private void stop(){
         handler.removeCallbacksAndMessages(null);
-        trafficLightsModbusSlave.stopSlaveListener();
+        modbusSlave.stopSlaveListener();
 
     }
 }

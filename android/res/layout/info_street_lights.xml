@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <include layout="@layout/basic_activity_info"></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="end"
+        android:layout_gravity="right">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/info_border"
+            android:layout_margin="@dimen/info_margins2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rejestr 0: "
+                android:textSize="@dimen/info_textsize"
+                android:layout_margin="@dimen/info_margins"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="00000000"
+                android:textSize="@dimen/info_textsize"
+
+                android:id="@+id/reg0Text"
+                android:layout_margin="@dimen/info_margins"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/info_border"
+            android:layout_margin="@dimen/info_margins2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rejestr 1: "
+                android:textSize="@dimen/info_textsize"
+
+                android:layout_margin="@dimen/info_margins"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="00000000"
+                android:textSize="@dimen/info_textsize"
+
+                android:id="@+id/reg1Text"
+                android:layout_margin="@dimen/info_margins"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/info_border"
+            android:layout_margin="@dimen/info_margins2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rejestr 2: "
+                android:textSize="@dimen/info_textsize"
+
+                android:layout_margin="@dimen/info_margins"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="00000000"
+                android:textSize="@dimen/info_textsize"
+
+                android:id="@+id/reg2Text"
+                android:layout_margin="@dimen/info_margins"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
