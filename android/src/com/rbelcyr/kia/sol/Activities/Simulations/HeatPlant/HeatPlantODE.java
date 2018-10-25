@@ -1,5 +1,8 @@
 package com.rbelcyr.kia.sol.Activities.Simulations.HeatPlant;
 
+import android.app.Activity;
+import android.preference.PreferenceManager;
+
 import org.apache.commons.math3.exception.DimensionMismatchException;
 import org.apache.commons.math3.exception.MaxCountExceededException;
 import org.apache.commons.math3.ode.FirstOrderDifferentialEquations;
@@ -20,14 +23,27 @@ public class HeatPlantODE implements FirstOrderDifferentialEquations{
         T_0 = t_0;
     }
 
-    public HeatPlantODE() {
-        V = 0.01;
-        this.ro = 1000;
-        this.c = 4190;
+    public HeatPlantODE(Activity activity) {
+        V = Float.parseFloat(PreferenceManager
+                .getDefaultSharedPreferences(activity.getApplicationContext())
+                .getString("V","0.01"));
+
+        this.ro = Integer.parseInt(PreferenceManager
+                .getDefaultSharedPreferences(activity.getApplicationContext())
+                .getString("ro","1000"));
+
+        this.c = Integer.parseInt(PreferenceManager
+                .getDefaultSharedPreferences(activity.getApplicationContext())
+                .getString("c","4192"));
+
         U = 250;
-        R = 11.2;
+        R = Float.parseFloat(PreferenceManager
+                .getDefaultSharedPreferences(activity.getApplicationContext())
+                .getString("R","11.2"));
         this.q = 0.0333;
-        T_0 = 20;
+        T_0 = Integer.parseInt(PreferenceManager
+                .getDefaultSharedPreferences(activity.getApplicationContext())
+                .getString("T0","20"));
     }
 
 

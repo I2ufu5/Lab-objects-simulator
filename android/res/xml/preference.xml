@@ -1,17 +1,63 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <EditTextPreference android:title="Port"
-        android:key="Port"
-        android:defaultValue="10502"
-        android:inputType="number"
-        >
-    </EditTextPreference>
 
-    <EditTextPreference android:title="UnitID"
-        android:key="unitID"
-        android:defaultValue="255"
-        android:inputType="number"
-        >
-    </EditTextPreference>
+    <PreferenceCategory
+        android:title="Połączenie">
+
+        <EditTextPreference android:title="Port"
+            android:key="Port"
+            android:summary="Port używany do komunikacji. Porty poniżej 1024 w systemach Unix są zablokowane"
+            android:defaultValue="10502"
+            android:inputType="number">
+        </EditTextPreference>
+
+        <EditTextPreference android:title="UnitID"
+            android:key="unitID"
+            android:summary="Numer ID modułu Slave wszystkich symulatorów"
+            android:defaultValue="255"
+            android:inputType="number">
+        </EditTextPreference>
+    </PreferenceCategory>
+
+
+        <PreferenceCategory
+            android:title="Parametry symulacji obiektu cieplnego">
+            <EditTextPreference android:title="Objętość"
+                android:key="V"
+                android:defaultValue="0.01"
+                android:inputType="numberDecimal">
+            </EditTextPreference>
+            <EditTextPreference android:title="Gęstość cieczy"
+                android:key="ro"
+                android:defaultValue="1000"
+                android:inputType="number">
+            </EditTextPreference>
+            <EditTextPreference android:title="Ciepło właściwe"
+                android:key="c"
+                android:defaultValue="4190"
+                android:inputType="number">
+            </EditTextPreference>
+            <EditTextPreference android:title="Rezystancja grzałki"
+                android:key="R"
+                android:defaultValue="11.2"
+                android:inputType="numberDecimal">
+            </EditTextPreference>
+            <EditTextPreference android:title="Temperatura wejściowa"
+                android:key="T0"
+                android:defaultValue="20"
+                android:inputType="number">
+            </EditTextPreference>
+        </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Parametry symulacji maszyny z kulkami">
+        <EditTextPreference android:title="Prędkość symulacji"
+            android:summary="Domyślnie 1/60"
+            android:key="simSpeed"
+            android:defaultValue="0.0166666666666666666"
+            android:inputType="numberDecimal">
+        </EditTextPreference>
+
+    </PreferenceCategory>
 
 
 </PreferenceScreen>

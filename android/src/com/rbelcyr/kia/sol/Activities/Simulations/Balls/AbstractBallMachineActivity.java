@@ -1,8 +1,10 @@
 package com.rbelcyr.kia.sol.Activities.Simulations.Balls;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
@@ -30,6 +32,10 @@ public abstract class AbstractBallMachineActivity extends AppCompatActivity impl
         setContentView(R.layout.activity_ball_scene);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         modbusSlave = new BallMachineSlave(getApplicationContext());
+
+        libgdxFragment.scene.setTimeStep(Float.parseFloat(PreferenceManager
+                .getDefaultSharedPreferences(this.getApplicationContext())
+                .getString("simSpeed","0.01666666")));
 
         handler = new Handler();
 

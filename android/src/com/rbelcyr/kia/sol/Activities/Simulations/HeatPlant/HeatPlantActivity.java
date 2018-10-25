@@ -56,7 +56,7 @@ public class HeatPlantActivity extends AppCompatActivity {
         graph = (GraphView) findViewById(R.id.chart);
         handler = new Handler();
 
-        heatPlant = new HeatPlant();
+        heatPlant = new HeatPlant(this);
         heatPlant.start();
 
         heatPlantGraph = new HeatPlantDAO(graph,heatPlant);

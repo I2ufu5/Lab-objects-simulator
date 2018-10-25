@@ -1,5 +1,6 @@
 package com.rbelcyr.kia.sol.Activities.Simulations.HeatPlant;
 
+import android.app.Activity;
 import android.os.Handler;
 import android.util.Log;
 
@@ -23,7 +24,7 @@ public class HeatPlant {
     private static float INPUT_TO_TEMPERATURE = 0.09765625f;
 
 
-    public HeatPlant(){
+    public HeatPlant(Activity activity){
         outputTemperature = 20.0f;
         voltage = 0;
         inputFlow = 0;
@@ -33,7 +34,7 @@ public class HeatPlant {
                 1.0e-10,
                 1.0e-10);
 
-        ode = new HeatPlantODE();
+        ode = new HeatPlantODE(activity);
     }
 
     public void setVoltage(short inputSignalVoltage) {
@@ -70,7 +71,8 @@ public class HeatPlant {
         ode.q = inputFlow;
         dp853.integrate(ode,odeTime,y0,odeTime+timeStep,y0);
         outputTemperature = (float)y0[0];
-        //Log.e("TAG", "compute: "+String.valueOf(outputTemperature));
+        //Log.e("REAL: ", String.valueOf(outputTemperature));
+        //Log.e("DIGITAL: ", String.valueOf(getTemperature()));
 
         odeTime += timeStep;
     }

@@ -24,6 +24,7 @@ public abstract class AbstractBallMachineScene extends ApplicationAdapter {
     World world;
     Box2DDebugRenderer debugRenderer;
     OrthographicCamera camera;
+    float timeStep;
 
     Array<Body> bodies = new Array<Body>();
     Blocker S1,S2,S3,S4;
@@ -168,11 +169,9 @@ public abstract class AbstractBallMachineScene extends ApplicationAdapter {
             new Ball(new Vector2(x,y),ballWhite,Color.WHITE,world);
     }
 
-
     //////////////////////////////////
     ///RENDER ,..................
     /////////////////////////////////
-
 
     @Override
     public void render () {
@@ -180,14 +179,13 @@ public abstract class AbstractBallMachineScene extends ApplicationAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         camera.update();
-        world.step(1/60f, 6, 2);
+        world.step(timeStep, 6, 2);
 
         world.getBodies(bodies);
 
         batch.setProjectionMatrix(camera.combined);
 
         batch.begin();
-
 
         Ball.draw(bodies,batch);
         Blocker.draw(S4,batch);
@@ -215,5 +213,7 @@ public abstract class AbstractBallMachineScene extends ApplicationAdapter {
         debugRenderer.dispose();
     }
 
-
+    public void setTimeStep(float timeStep) {
+        this.timeStep = timeStep;
+    }
 }
