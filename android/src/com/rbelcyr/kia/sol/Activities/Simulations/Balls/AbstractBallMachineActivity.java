@@ -86,7 +86,7 @@ public abstract class AbstractBallMachineActivity extends AppCompatActivity impl
                         else libgdxFragment.scene.closeS1();
 
                     }catch (Exception e){
-                        Log.d("modbus+fragment Update: ", e.toString());
+                        Log.d("modbus+fragment Update:", e.toString());
                     }
 
                 }
@@ -113,6 +113,7 @@ public abstract class AbstractBallMachineActivity extends AppCompatActivity impl
         },20);
 
     }
+
 
     @Override
     public void exit() {

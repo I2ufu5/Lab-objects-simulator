@@ -1,12 +1,9 @@
 package com.rbelcyr.kia.sol.Activities.Simulations.HeatPlant;
 
-import android.net.wifi.WifiManager;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.format.Formatter;
-import android.util.Log;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -14,13 +11,13 @@ import android.widget.TextView;
 
 import com.jjoe64.graphview.GraphView;
 import com.rbelcyr.kia.sol.Dekorator.DekoratorHeatPlant;
-import com.rbelcyr.kia.sol.ModbusSlaves.HeatPlantModbusSlave;
+import com.rbelcyr.kia.sol.ModbusSlaves.HeatPlantSlave;
 import com.rbelcyr.kia.sol.R;
 
 public class HeatPlantActivity extends AppCompatActivity {
 
     HeatPlantDAO heatPlantGraph;
-    HeatPlantModbusSlave modbusSlave;
+    HeatPlantSlave modbusSlave;
     HeatPlant heatPlant;
     GraphView graph;
     Handler handler;
@@ -62,7 +59,7 @@ public class HeatPlantActivity extends AppCompatActivity {
         heatPlantGraph = new HeatPlantDAO(graph,heatPlant);
         heatPlantGraph.setFormat(getApplicationContext());
 
-        modbusSlave = new HeatPlantModbusSlave(getApplicationContext());
+        modbusSlave = new HeatPlantSlave(getApplicationContext());
         dekorator = new DekoratorHeatPlant(this,modbusSlave);
         dekorator.initUiElements();
 

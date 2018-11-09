@@ -20,4 +20,10 @@ public abstract class AbstractBallFragment extends AndroidFragmentApplication {
 
         return initializeForView(scene);
     }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        //scene.dispose();
+    }
 }

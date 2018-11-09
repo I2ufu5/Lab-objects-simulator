@@ -4,11 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.rbelcyr.kia.sol.ModbusSlaves.AbstractModbusSlave;
-import com.rbelcyr.kia.sol.ModbusSlaves.TrafficLightsModbusSlave;
 import com.rbelcyr.kia.sol.R;
 import com.serotonin.modbus4j.exception.IllegalDataAddressException;
-
-import org.w3c.dom.Text;
 
 public class DekoratorStreetLights extends AbstractDekorator {
 

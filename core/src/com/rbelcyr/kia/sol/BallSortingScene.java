@@ -8,7 +8,7 @@ import com.rbelcyr.kia.sol.Enitities.Blocker;
 import com.rbelcyr.kia.sol.Enitities.Scene;
 import com.rbelcyr.kia.sol.Enitities.Sensor;
 
-public class ballSorting extends AbstractBallMachineScene {
+public class BallSortingScene extends AbstractBallMachineScene {
 
 	@Override
 	public void create () {

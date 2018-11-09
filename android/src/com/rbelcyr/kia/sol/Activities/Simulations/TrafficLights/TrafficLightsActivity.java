@@ -6,13 +6,13 @@ import android.os.Bundle;
 import android.view.WindowManager;
 
 import com.rbelcyr.kia.sol.Dekorator.DekoratorStreetLights;
-import com.rbelcyr.kia.sol.ModbusSlaves.TrafficLightsModbusSlave;
+import com.rbelcyr.kia.sol.ModbusSlaves.TrafficLightsSlave;
 import com.rbelcyr.kia.sol.R;
 
 public class TrafficLightsActivity extends AppCompatActivity {
 
     TrafficLightsController trafficLightsController;
-    TrafficLightsModbusSlave modbusSlave;
+    TrafficLightsSlave modbusSlave;
     Handler handler;
     boolean handlerRunning;
     DekoratorStreetLights dekorator;
@@ -24,7 +24,7 @@ public class TrafficLightsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_street_lights);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-        modbusSlave = new TrafficLightsModbusSlave(getApplicationContext());
+        modbusSlave = new TrafficLightsSlave(getApplicationContext());
         dekorator = new DekoratorStreetLights(this,modbusSlave);
         dekorator.initUiElements();
         trafficLightsController = new TrafficLightsController(this.getWindow().getDecorView().getRootView());

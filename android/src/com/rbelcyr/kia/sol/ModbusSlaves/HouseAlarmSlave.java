@@ -6,10 +6,10 @@ import com.serotonin.modbus4j.exception.IllegalDataAddressException;
 
 import com.rbelcyr.kia.sol.ModbusSlaves.AbstractModbusSlave;
 
-public class HouseAlarmModbusSlave extends AbstractModbusSlave{
+public class HouseAlarmSlave extends AbstractModbusSlave{
 
 
-    public HouseAlarmModbusSlave(Context context){
+    public HouseAlarmSlave(Context context){
         super(context);
 
         addModbusInputs(5);

@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         Button trafficLightsSimButton = findViewById(R.id.trafficLights);
         Button heatPlantSimButton = findViewById(R.id.heatPlant);
         FloatingActionButton settingsButton = findViewById(R.id.floatingSettingButton);
+        FloatingActionButton aboutButton = findViewById(R.id.floatingAboutButton);
 
 
         houseAlarmSimButton.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +77,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(),SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        aboutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(),AboutPage.class);
                 startActivity(intent);
             }
         });

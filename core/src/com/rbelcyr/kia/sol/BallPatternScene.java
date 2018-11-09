@@ -10,7 +10,7 @@ import com.rbelcyr.kia.sol.Enitities.Blocker;
 import com.rbelcyr.kia.sol.Enitities.Scene;
 import com.rbelcyr.kia.sol.Enitities.Sensor;
 
-public class ballPattern extends AbstractBallMachineScene {
+public class BallPatternScene extends AbstractBallMachineScene {
 
 
     @Override

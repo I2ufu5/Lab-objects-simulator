@@ -16,4 +16,8 @@ public class BallColorSortingActivity extends AbstractBallMachineActivity{
         super.onCreate(savedInstanceState);
     }
 
+    @Override
+    public void exit() {
+
+    }
 }

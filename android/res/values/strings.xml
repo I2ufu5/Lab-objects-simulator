@@ -2,7 +2,7 @@
     <string name="app_name">KiaSOL</string>
     <string name="houseAlarmSimulationButton">System Alarmowy</string>
     <string name="ballColorSortingButton">Sortowanie kulek</string>
-    <string name="ballColorPatternButton">Układanie wzoru</string>
+    <string name="ballColorPatternButton">Układanie wzoru z kulek</string>
     <string name="trafficLights">Skrzyżowanie</string>
     <string name="heatPlant">Obiekt cieplny</string>
     <string name="symulator_obiekt_w_laboratoryjnych"> Symulator obiektów laboratoryjnych </string>

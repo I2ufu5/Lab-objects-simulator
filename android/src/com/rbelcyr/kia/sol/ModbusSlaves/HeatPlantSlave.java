@@ -4,8 +4,8 @@ import android.content.Context;
 
 import com.rbelcyr.kia.sol.ModbusSlaves.AbstractModbusSlave;
 
-public class HeatPlantModbusSlave extends AbstractModbusSlave {
-    public HeatPlantModbusSlave(Context context) {
+public class HeatPlantSlave extends AbstractModbusSlave {
+    public HeatPlantSlave(Context context) {
         super(context);
         addModbusRegister(2);
         addModbusInputRegister(1);

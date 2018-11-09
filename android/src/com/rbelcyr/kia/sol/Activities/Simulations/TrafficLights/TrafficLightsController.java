@@ -17,6 +17,7 @@ public class TrafficLightsController {
         this.view = view;
         add();
     }
+
     public void add(){
         addCarsHorizontal();
         addCarsVertical();

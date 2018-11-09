@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.rbelcyr.kia.sol.Dekorator.DekoratorHouseAlarm;
-import com.rbelcyr.kia.sol.ModbusSlaves.HouseAlarmModbusSlave;
+import com.rbelcyr.kia.sol.ModbusSlaves.HouseAlarmSlave;
 import com.rbelcyr.kia.sol.R;
 import com.serotonin.modbus4j.exception.IllegalDataAddressException;
 
@@ -27,10 +27,10 @@ public class HouseAlarmActivity extends AppCompatActivity {
     private TextView alarmLightTB;
     private TextView alarmSound;
     private TextView alarmOnOff;
-    private ImageView window1,window2,door,buddy,lock;
+    private ImageView window1,window2,door, movementSensor,lock;
     private Thread modbusUpdater;
     private Handler handler;
-    private HouseAlarmModbusSlave modbusSlave;
+    private HouseAlarmSlave modbusSlave;
     private DekoratorHouseAlarm dekorator;
 
     @Override
@@ -51,11 +51,11 @@ public class HouseAlarmActivity extends AppCompatActivity {
         window1 = findViewById(R.id.window1_open);
         window2 = findViewById(R.id.window2_open);
         door = findViewById(R.id.door_open);
-        buddy = findViewById(R.id.buddy);
+        movementSensor = findViewById(R.id.buddy);
         lock = findViewById(R.id.lock);
 
         handler = new Handler();
-        modbusSlave = new HouseAlarmModbusSlave(getApplicationContext());
+        modbusSlave = new HouseAlarmSlave(getApplicationContext());
         dekorator = new DekoratorHouseAlarm(this, modbusSlave);
         dekorator.initUiElements();
 
@@ -69,10 +69,11 @@ public class HouseAlarmActivity extends AppCompatActivity {
     }
 
     @Override
-        protected void onPostCreate(@Nullable Bundle savedInstanceState) {
-            super.onPostCreate(savedInstanceState);
-        startAlarmUiUpdater();
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
         setOnClickListeners();
+        startActivity();
+
 
     }
 
@@ -139,7 +140,7 @@ public class HouseAlarmActivity extends AppCompatActivity {
 
     }
 
-    private void startAlarmUiUpdater(){
+    private void startUiUpdater(){
 
         handler.postDelayed(new Runnable() {
             @Override
@@ -161,8 +162,8 @@ public class HouseAlarmActivity extends AppCompatActivity {
                                 else door.setVisibility(View.INVISIBLE);
 
                                 if(modbusSlave.getAllInputs().get(3))
-                                    buddy.setVisibility(View.VISIBLE);
-                                else buddy.setVisibility(View.INVISIBLE);
+                                    movementSensor.setVisibility(View.VISIBLE);
+                                else movementSensor.setVisibility(View.INVISIBLE);
 
                                 if(modbusSlave.getAllInputs().get(4))
                                     lock.setImageResource(R.drawable.lock_on);
@@ -170,12 +171,14 @@ public class HouseAlarmActivity extends AppCompatActivity {
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-                        handler.postDelayed(this,100);
+                        handler.postDelayed(this,50);
                     }
                 });
             }
         },50);
+    }
 
+    private void startModbusUpdater(){
         modbusUpdater = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -197,12 +200,17 @@ public class HouseAlarmActivity extends AppCompatActivity {
                         else alarmOnOff.setBackgroundColor(getResources().getColor(R.color.alarmRed));
 
                     }catch (Exception e){
-                        Log.e("uiUpdaterException",e.toString());
+                        Log.e("modbusUpdaterException",e.toString());
                     }
                 }
             }
         });
         modbusUpdater.start();
+    }
+
+    private void startActivity(){
+        startModbusUpdater();
+        startUiUpdater();
     }
 
     @Override
