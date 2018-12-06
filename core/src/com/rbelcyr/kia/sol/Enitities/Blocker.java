@@ -24,29 +24,18 @@ public class Blocker extends Sprite{
     public Blocker(World world, Texture texture, Vector2 positionOpen, Vector2 positionClose, float angle,boolean left){
         super(texture);
 
-//        BodyDef bodyDef = new BodyDef();
-//        bodyDef.type = BodyDef.BodyType.KinematicBody;
-//        bodyDef.position.set(positionOpen.x/PIXELS_TO_METERS,positionOpen.y/PIXELS_TO_METERS);
-//        Body body = world.createBody(bodyDef);
-//        PolygonShape shape = new PolygonShape();
-//        shape.setAsBox(35.0f/PIXELS_TO_METERS, 5.0f/PIXELS_TO_METERS);
-//        body.createFixture(shape, 0.0f);
-//        body.setTransform(body.getPosition(),(float) Math.toRadians(angle));
-
         BodyEditorLoader blockerBody = new BodyEditorLoader(Gdx.files.internal("bodies/sortownica.json"));
 
         BodyDef bd = new BodyDef();
         bd.type = BodyDef.BodyType.KinematicBody;
         bd.position.set(positionOpen);
         bd.angle = (float)Math.toRadians(angle);
-
         Body body = world.createBody(bd);
 
         FixtureDef fd = new FixtureDef();
         fd.density = 1;
         fd.friction = 0.1f;
         fd.restitution = 0.3f;
-
 
         if(left)
             blockerBody.attachFixture(body, "blockerLeft", fd, 1);

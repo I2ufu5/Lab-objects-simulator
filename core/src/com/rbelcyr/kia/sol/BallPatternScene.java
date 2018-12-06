@@ -77,4 +77,8 @@ public class BallPatternScene extends AbstractBallMachineScene {
              createBall((startPos.x+32*i),(startPos.y-35*j), Color.BLACK);
     }
 
+    @Override
+    public void dispose() {
+        super.dispose();
+    }
 }

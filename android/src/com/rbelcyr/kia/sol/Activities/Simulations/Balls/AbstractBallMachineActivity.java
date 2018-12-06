@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.WindowManager;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.android.AndroidFragmentApplication;
 import com.rbelcyr.kia.sol.Activities.MainActivity;
 import com.rbelcyr.kia.sol.Dekorator.DekoratorBallScene;
@@ -58,6 +59,7 @@ public abstract class AbstractBallMachineActivity extends AppCompatActivity impl
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
+        /*
         thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -93,6 +95,7 @@ public abstract class AbstractBallMachineActivity extends AppCompatActivity impl
             }
         });
         thread.start();
+        */
 
 
         handler.postDelayed(new Runnable() {
@@ -105,6 +108,32 @@ public abstract class AbstractBallMachineActivity extends AppCompatActivity impl
                             dekorator.update();
                         } catch (Exception e) {
                             Log.e("uiUpdate",e.toString());
+                        }
+
+                        try {
+                            modbusSlave.setInput(0, libgdxFragment.scene.getColorSensorValue());
+                            modbusSlave.setInput(1, libgdxFragment.scene.getBallSensorValue());
+
+                            if (modbusSlave.getAllCoils().get(3))
+                                libgdxFragment.scene.openS4();
+                            else libgdxFragment.scene.closeS4();
+
+
+                            if (modbusSlave.getAllCoils().get(2))
+                                libgdxFragment.scene.openS3();
+                            else libgdxFragment.scene.closeS3();
+
+
+                            if (modbusSlave.getAllCoils().get(1))
+                                libgdxFragment.scene.openS2();
+                            else libgdxFragment.scene.closeS2();
+
+                            if (modbusSlave.getAllCoils().get(0))
+                                libgdxFragment.scene.openS1();
+                            else libgdxFragment.scene.closeS1();
+
+                        }catch (Exception e){
+                            Log.d("modbus+fragment update:", e.toString());
                         }
                     }
                 });
@@ -121,18 +150,24 @@ public abstract class AbstractBallMachineActivity extends AppCompatActivity impl
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("EXIT", true);
         startActivity(intent);
+        this.finish();
     }
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        libgdxFragment.exit();
         stop();
+        super.onBackPressed();
+
+
     }
 
     private void stop(){
-        thread.interrupt();
         modbusSlave.stopSlaveListener();
         handler.removeCallbacksAndMessages(null);
-        exit();
+        handler = null;
+        thread = null;
+        modbusSlave = null;
+        this.exit();
     }
 }

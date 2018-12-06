@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.android.AndroidFragmentApplication;
 import com.rbelcyr.kia.sol.AbstractBallMachineScene;
 
@@ -24,6 +25,5 @@ public abstract class AbstractBallFragment extends AndroidFragmentApplication {
     @Override
     public void onStop() {
         super.onStop();
-        //scene.dispose();
     }
 }

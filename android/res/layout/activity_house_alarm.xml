@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".Activities.Simulations.HouseAlarmActivity">
 
@@ -242,45 +243,47 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.4775" />
 
+        <ImageView
+            android:id="@+id/alarm_dzwiek"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/alarm_swiatlo"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_doorR"
+            app:layout_constraintStart_toStartOf="@+id/guideline_doorL"
+            app:srcCompat="@android:drawable/ic_lock_silent_mode" />
+
+        <ImageView
+            android:id="@+id/alarm_swiatlo"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline_doorU"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_doorR"
+            app:layout_constraintStart_toStartOf="@+id/guideline_doorL"
+            app:srcCompat="@android:drawable/btn_star" />
+
+        <ImageView
+            android:id="@+id/alarm_status"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@+id/guideline_doorR"
+            app:layout_constraintTop_toTopOf="@+id/guideline_window2D"
+            app:srcCompat="@android:drawable/ic_secure" />
+
     </android.support.constraint.ConstraintLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/AlarmSwiatlo"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:color/darker_gray"
-            android:gravity="center"
-            android:text="Alarm_swiatlo" />
-
-        <TextView
-            android:id="@+id/alarmDzwiek"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:color/darker_gray"
-            android:gravity="center"
-            android:text="Alarm_dzwiek" />
-
-        <TextView
-            android:id="@+id/onOffAlarm"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:color/darker_gray"
-            android:gravity="center"
-            android:text="On/Off alarm" />
-    </LinearLayout>
-
-    <include layout="@layout/info_house_alarm"
-        android:layout_height="wrap_content"
+    <include
+        layout="@layout/info_house_alarm"
         android:layout_width="wrap_content"
-        android:layout_margin="@dimen/info_margins"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/info_margins" />
 
 </LinearLayout>

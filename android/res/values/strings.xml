@@ -7,6 +7,8 @@
     <string name="heatPlant">Obiekt cieplny</string>
     <string name="symulator_obiekt_w_laboratoryjnych"> Symulator obiektów laboratoryjnych </string>
     <string name="title_activity_settings">Settings</string>
+    <string name="motywacja">Aplikacja w swoim zamyśle ma za zadanie symulować działanie niektórych z urządzeń wykorzystywanych podczas zajęć laboratoryjnych. Głównym celem powstania było ułatwienie studentom możliwości testowania, nauki oraz oswojenia się z teorią sterowania obiektów. Konfiguracja sprzętowo-programowa w założeniu musi być łatwo dostępna dla każdego. Do poprawnego działania powinny wystarczyć narzędzia, które są ogólnodostępne i nie wymagają od użytkownika dodatkowego wkładu finansowego. </string>
+
 
     <!-- Strings related to Settings -->
 

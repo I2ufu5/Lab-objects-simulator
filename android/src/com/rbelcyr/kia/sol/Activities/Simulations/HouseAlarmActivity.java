@@ -1,7 +1,9 @@
 package com.rbelcyr.kia.sol.Activities.Simulations;
 
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,12 +26,12 @@ public class HouseAlarmActivity extends AppCompatActivity {
     private Button doorButton ;
     private Button armingButton ;
     private Button movementSensorButton;
-    private TextView alarmLightTB;
-    private TextView alarmSound;
-    private TextView alarmOnOff;
+    private ImageView alarmLightTB;
+    private ImageView alarmSound;
+    private ImageView alarmOnOff;
     private ImageView window1,window2,door, movementSensor,lock;
     private Thread modbusUpdater;
-    private Handler handler;
+    private Handler uiUpdater;
     private HouseAlarmSlave modbusSlave;
     private DekoratorHouseAlarm dekorator;
 
@@ -38,46 +40,47 @@ public class HouseAlarmActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_house_alarm);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        initUiElements();
+        setOnClickListeners();
 
-        window1Button =  findViewById(R.id.window1Button);
-        window2Button =  findViewById(R.id.window2Button);
-        doorButton =  findViewById(R.id.doorButton);
-        armingButton =  findViewById(R.id.armingButton);
-        movementSensorButton =  findViewById(R.id.movementSensorbutton);
-        alarmLightTB =  findViewById(R.id.AlarmSwiatlo);
-        alarmSound =  findViewById(R.id.alarmDzwiek);
-        alarmOnOff =  findViewById(R.id.onOffAlarm);
-
-        window1 = findViewById(R.id.window1_open);
-        window2 = findViewById(R.id.window2_open);
-        door = findViewById(R.id.door_open);
-        movementSensor = findViewById(R.id.buddy);
-        lock = findViewById(R.id.lock);
-
-        handler = new Handler();
+        uiUpdater = new Handler();
         modbusSlave = new HouseAlarmSlave(getApplicationContext());
         dekorator = new DekoratorHouseAlarm(this, modbusSlave);
-        dekorator.initUiElements();
 
         try {
             modbusSlave.startSlaveListener();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-
     }
+
+
 
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        setOnClickListeners();
-        startActivity();
-
-
+        startUiUpdater();
     }
 
-    private void setOnClickListeners(){
+    //@Override
+    void initUiElements() {
+        window1Button =  findViewById(R.id.window1Button);
+        window2Button =  findViewById(R.id.window2Button);
+        doorButton =  findViewById(R.id.doorButton);
+        armingButton =  findViewById(R.id.armingButton);
+        movementSensorButton =  findViewById(R.id.movementSensorbutton);
+        alarmLightTB =  findViewById(R.id.alarm_swiatlo);
+        alarmSound =  findViewById(R.id.alarm_dzwiek);
+        alarmOnOff =  findViewById(R.id.alarm_status);
+
+        window1 = findViewById(R.id.window1_open);
+        window2 = findViewById(R.id.window2_open);
+        door = findViewById(R.id.door_open);
+        movementSensor = findViewById(R.id.buddy);
+        lock = findViewById(R.id.lock);
+    }
+
+    protected void setOnClickListeners(){
         window1Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -140,9 +143,9 @@ public class HouseAlarmActivity extends AppCompatActivity {
 
     }
 
-    private void startUiUpdater(){
+    void startUiUpdater(){
 
-        handler.postDelayed(new Runnable() {
+        uiUpdater.postDelayed(new Runnable() {
             @Override
             public void run() {
                 runOnUiThread(new Runnable() {
@@ -168,56 +171,37 @@ public class HouseAlarmActivity extends AppCompatActivity {
                                 if(modbusSlave.getAllInputs().get(4))
                                     lock.setImageResource(R.drawable.lock_on);
                                 else lock.setImageResource(R.drawable.lock_off);
+
+                                if(modbusSlave.getAllCoils().get(0)){
+                                    alarmLightTB.setImageResource(R.drawable.red_light);
+                                }else alarmLightTB.setImageResource(R.drawable.gray_light);
+
+                                if(modbusSlave.getAllCoils().get(1)){
+                                    alarmSound.setImageResource(R.drawable.iconfinder_speaker_volume_293647);
+                                }else alarmSound.setImageResource(R.drawable.iconfinder_speaker_293703);
+
+                                if(modbusSlave.getAllCoils().get(2)){
+                                    alarmOnOff.setImageResource(R.drawable.alarm_on);
+                                }else alarmOnOff.setImageResource(R.drawable.alarm_of);
+
+                                dekorator.update();
+
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-                        handler.postDelayed(this,50);
+                        uiUpdater.postDelayed(this,50);
                     }
                 });
             }
         },50);
     }
 
-    private void startModbusUpdater(){
-        modbusUpdater = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true){
-
-                    try {
-                        dekorator.update();
-
-                        if (modbusSlave.getAllCoils().get(0))
-                            alarmLightTB.setBackgroundColor(getResources().getColor(R.color.alarmGreen));
-                        else alarmLightTB.setBackgroundColor(getResources().getColor(R.color.alarmRed));
-
-                        if (modbusSlave.getAllCoils().get(1))
-                            alarmSound.setBackgroundColor(getResources().getColor(R.color.alarmGreen));
-                        else alarmSound.setBackgroundColor(getResources().getColor(R.color.alarmRed));
-
-                        if (modbusSlave.getAllCoils().get(2))
-                            alarmOnOff.setBackgroundColor(getResources().getColor(R.color.alarmGreen));
-                        else alarmOnOff.setBackgroundColor(getResources().getColor(R.color.alarmRed));
-
-                    }catch (Exception e){
-                        Log.e("modbusUpdaterException",e.toString());
-                    }
-                }
-            }
-        });
-        modbusUpdater.start();
-    }
-
-    private void startActivity(){
-        startModbusUpdater();
-        startUiUpdater();
-    }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        modbusUpdater.interrupt();
-        handler.removeCallbacksAndMessages(null);
+        //modbusUpdater.interrupt();
+        uiUpdater.removeCallbacksAndMessages(null);
     }
 }
 

@@ -18,6 +18,10 @@ public class BallColorSortingActivity extends AbstractBallMachineActivity{
 
     @Override
     public void exit() {
+    }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

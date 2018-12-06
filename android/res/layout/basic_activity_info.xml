@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="180dp"
+    android:layout_width="170dp"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
@@ -9,75 +9,75 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/info_border"
-        android:layout_margin="@dimen/info_margins2">
+        android:layout_margin="@dimen/info_margins2"
+        android:background="@drawable/info_border">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/info_margins"
             android:text="IP: "
-            android:textSize="@dimen/info_textsize"
-            android:layout_margin="@dimen/info_margins"/>
+            android:textSize="@dimen/info_textsize" />
 
         <TextView
+            android:id="@+id/ipText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/info_margins"
             android:gravity="right"
             android:text="192.168.1.100"
-            android:textSize="@dimen/info_textsize"
-            android:id="@+id/ipText"
-            android:layout_margin="@dimen/info_margins"/>
+            android:textSize="@dimen/info_textsize" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/info_border"
-        android:layout_margin="@dimen/info_margins2">
+        android:layout_margin="@dimen/info_margins2"
+        android:background="@drawable/info_border">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/info_margins"
             android:text="Port: "
-            android:textSize="@dimen/info_textsize"
-            android:layout_margin="@dimen/info_margins"/>
+            android:textSize="@dimen/info_textsize" />
 
         <TextView
+            android:id="@+id/portText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/info_margins"
             android:gravity="right"
-            android:text="10502"
-            android:textSize="@dimen/info_textsize"
 
-            android:id="@+id/portText"
-            android:layout_margin="@dimen/info_margins"/>
+            android:text="10502"
+            android:textSize="@dimen/info_textsize" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/info_border"
-        android:layout_margin="@dimen/info_margins2">
+        android:layout_margin="@dimen/info_margins2"
+        android:background="@drawable/info_border">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/info_margins"
             android:text="UnitID: "
-            android:textSize="@dimen/info_textsize"
 
-            android:layout_margin="@dimen/info_margins"/>
+            android:textSize="@dimen/info_textsize" />
 
         <TextView
+            android:id="@+id/unitIdText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/info_margins"
             android:gravity="right"
-            android:text="255"
-            android:textSize="@dimen/info_textsize"
 
-            android:id="@+id/unitIdText"
-            android:layout_margin="@dimen/info_margins"/>
+            android:text="255"
+            android:textSize="@dimen/info_textsize" />
 
     </LinearLayout>
 

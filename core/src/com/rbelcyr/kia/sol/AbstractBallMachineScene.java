@@ -1,7 +1,9 @@
 package com.rbelcyr.kia.sol;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -15,7 +17,7 @@ import com.badlogic.gdx.utils.Array;
 import com.rbelcyr.kia.sol.Enitities.*;
 
 
-public abstract class AbstractBallMachineScene extends ApplicationAdapter {
+public abstract class AbstractBallMachineScene extends ApplicationAdapter implements ApplicationListener {
 
     SpriteBatch batch;
     Texture ballBlack,ballWhite;
@@ -198,6 +200,11 @@ public abstract class AbstractBallMachineScene extends ApplicationAdapter {
         if(Gdx.input.isTouched()) {
             Ball.applyImpulse(bodies);
         }
+
+        if(Gdx.input.isKeyPressed(Input.Keys.BACK)){
+
+            Gdx.app.exit();
+        }
         //debugRenderer.render(world, camera.combined);
     }
 
@@ -207,10 +214,27 @@ public abstract class AbstractBallMachineScene extends ApplicationAdapter {
         ballBlack.dispose();
         ballWhite.dispose();
         sceneTex.dispose();
+        for (Body body : bodies){
+            world.destroyBody(body);
+        }
         world.dispose();
         blockerTexRight.dispose();
         blockerTexLeft.dispose();
         debugRenderer.dispose();
+
+        batch = null;
+        ballBlack = null; ballWhite = null;
+        sceneTex= null;
+        blockerTexRight = null; blockerTexLeft= null;
+        world= null;
+        debugRenderer= null;
+        camera= null;
+
+        bodies = null;
+        S1= null; S2 = null; S3= null; S4= null;
+        scene = null;
+        colorSensor = null; ballSensor = null;
+
     }
 
     public void setTimeStep(float timeStep) {

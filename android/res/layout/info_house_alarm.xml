@@ -137,84 +137,84 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_gravity="right"
         android:gravity="end"
-        android:layout_gravity="right">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/info_border"
-            android:layout_margin="@dimen/info_margins2">
+            android:layout_margin="@dimen/info_margins2"
+            android:background="@drawable/info_border">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/info_margins"
                 android:text="Uzbrojenie: "
-                android:textSize="@dimen/info_textsize"
-                android:layout_margin="@dimen/info_margins"/>
+                android:textSize="@dimen/info_textsize" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:text="0"
-                android:textSize="@dimen/info_textsize"
-
                 android:id="@+id/alarmStatusText"
-                android:layout_margin="@dimen/info_margins"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/info_margins"
+                android:gravity="right"
+
+                android:text="0"
+                android:textSize="@dimen/info_textsize" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/info_border"
-            android:layout_margin="@dimen/info_margins2">
+            android:layout_margin="@dimen/info_margins2"
+            android:background="@drawable/info_border">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/info_margins"
                 android:text="Dzwięk: "
-                android:textSize="@dimen/info_textsize"
 
-                android:layout_margin="@dimen/info_margins"/>
+                android:textSize="@dimen/info_textsize" />
 
             <TextView
+                android:id="@+id/soundText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/info_margins"
                 android:gravity="right"
-                android:text="0"
-                android:textSize="@dimen/info_textsize"
 
-                android:id="@+id/soundText"
-                android:layout_margin="@dimen/info_margins"/>
+                android:text="0"
+                android:textSize="@dimen/info_textsize" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/info_border"
-            android:layout_margin="@dimen/info_margins2">
+            android:layout_margin="@dimen/info_margins2"
+            android:background="@drawable/info_border">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/info_margins"
                 android:text="Światło :  "
-                android:textSize="@dimen/info_textsize"
 
-                android:layout_margin="@dimen/info_margins"/>
+                android:textSize="@dimen/info_textsize" />
 
             <TextView
+                android:id="@+id/lightText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/info_margins"
                 android:gravity="right"
-                android:text="0"
-                android:textSize="@dimen/info_textsize"
 
-                android:id="@+id/lightText"
-                android:layout_margin="@dimen/info_margins"/>
+                android:text="0"
+                android:textSize="@dimen/info_textsize" />
         </LinearLayout>
 
     </LinearLayout>

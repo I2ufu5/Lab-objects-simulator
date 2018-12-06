@@ -13,9 +13,10 @@ public class BallColorPatternFragment extends AbstractBallFragment {
         super.scene = new BallPatternScene();
     }
 
+    /*
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         return initializeForView(scene);
     }
-
+     */
 }
