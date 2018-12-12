@@ -92,6 +92,7 @@ public class HeatPlantActivity extends AppCompatActivity {
         handler.removeCallbacksAndMessages(null);
         modbusSlave.stopSlaveListener();
         heatPlant.stop();
+        thread.interrupt();
     }
 
     private void startModbusUpdate(){

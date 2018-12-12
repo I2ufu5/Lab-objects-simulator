@@ -13,6 +13,10 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.rbelcyr.kia.sol.BodyEditorLoader;
 
 import java.lang.reflect.Array;
+import java.util.logging.Handler;
+
+import static java.lang.Thread.sleep;
+import static org.apache.commons.math3.util.FastMath.abs;
 
 public class Blocker extends Sprite{
     private Vector2 positionOpen;
@@ -34,7 +38,7 @@ public class Blocker extends Sprite{
 
         FixtureDef fd = new FixtureDef();
         fd.density = 1;
-        fd.friction = 0.1f;
+        fd.friction = 0.f;
         fd.restitution = 0.3f;
 
         if(left)
@@ -48,6 +52,7 @@ public class Blocker extends Sprite{
         this.positionOpen = new Vector2(positionOpen.x/PIXELS_TO_METERS,positionOpen.y/PIXELS_TO_METERS);
         this.positionClose = new Vector2(positionClose.x/PIXELS_TO_METERS,positionClose.y/PIXELS_TO_METERS);
 
+        body.setTransform(positionClose.x/PIXELS_TO_METERS,positionClose.y/PIXELS_TO_METERS,0);
         }
 
     public Vector2 getPositionOpen() {
@@ -61,6 +66,15 @@ public class Blocker extends Sprite{
     private void updatePosition(){
         super.setPosition(this.body.getPosition().x-this.getWidth()/2,this.body.getPosition().y-this.getHeight()/2);
     }
+
+    public void open(){
+        body.setTransform(getPositionOpen(),body.getAngle());
+    }
+
+    public void close(){
+        body.setTransform(getPositionClose(),body.getAngle());
+    }
+
 
     /////////////
     ////static///

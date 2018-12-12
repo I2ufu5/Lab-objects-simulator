@@ -53,8 +53,8 @@ public class BallPatternScene extends AbstractBallMachineScene {
     //////////////////////////////
 
     protected void createBlockers(){
-        S1 = new Blocker(world,blockerTexRight,new Vector2(635,610),new Vector2(595,610),180,false);
-        S2 = new Blocker(world,blockerTexLeft,new Vector2(155,607),new Vector2(205,607),180,true);
+        S1 = new Blocker(world,blockerTexRight,new Vector2(635,610),new Vector2(600,610),180,false);
+        S2 = new Blocker(world,blockerTexLeft,new Vector2(155,607),new Vector2(200,607),180,true);
         S3 = new Blocker(world,blockerTexRight,new Vector2(295f,525),new Vector2(350,525),0,false);
         S4 = new Blocker(world,blockerTexRight,new Vector2(482f,425),new Vector2(460f,425),0,false);
     }

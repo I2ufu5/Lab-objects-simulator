@@ -29,7 +29,7 @@ public abstract class AbstractBallMachineScene extends ApplicationAdapter implem
     float timeStep;
 
     Array<Body> bodies = new Array<Body>();
-    Blocker S1,S2,S3,S4;
+    public Blocker S1,S2,S3,S4;
     Scene scene;
     Sensor colorSensor,ballSensor;
 
@@ -120,6 +120,7 @@ public abstract class AbstractBallMachineScene extends ApplicationAdapter implem
 
     protected abstract void createBlockers();
 
+    /*
     public void openS4(){
         S4.body.setTransform(S4.getPositionOpen(),S4.body.getAngle());
     }
@@ -150,6 +151,15 @@ public abstract class AbstractBallMachineScene extends ApplicationAdapter implem
 
     public void closeS1(){
         S1.body.setTransform(S1.getPositionClose(),S1.body.getAngle());
+    }
+    */
+
+    public void open(Blocker blocker){
+        blocker.open();
+    }
+
+    public void close(Blocker blocker){
+        blocker.close();
     }
 
     ////////////////////////////////
@@ -188,13 +198,13 @@ public abstract class AbstractBallMachineScene extends ApplicationAdapter implem
         batch.setProjectionMatrix(camera.combined);
 
         batch.begin();
-
+        scene.draw(batch);
         Ball.draw(bodies,batch);
         Blocker.draw(S4,batch);
         Blocker.draw(S3,batch);
         Blocker.draw(S2,batch);
         Blocker.draw(S1,batch);
-        scene.draw(batch);
+
         batch.end();
 
         if(Gdx.input.isTouched()) {
