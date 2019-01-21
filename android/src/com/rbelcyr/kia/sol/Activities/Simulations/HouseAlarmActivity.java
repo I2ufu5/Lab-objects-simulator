@@ -1,7 +1,11 @@
 package com.rbelcyr.kia.sol.Activities.Simulations;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Handler;
+import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -34,6 +38,9 @@ public class HouseAlarmActivity extends AppCompatActivity {
     private Handler uiUpdater;
     private HouseAlarmSlave modbusSlave;
     private DekoratorHouseAlarm dekorator;
+    private MediaPlayer mediaPlayer;
+    private Vibrator vibrator;
+    private boolean isVibrating = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +53,16 @@ public class HouseAlarmActivity extends AppCompatActivity {
         uiUpdater = new Handler();
         modbusSlave = new HouseAlarmSlave(getApplicationContext());
         dekorator = new DekoratorHouseAlarm(this, modbusSlave);
+        mediaPlayer = MediaPlayer.create(this.getApplicationContext(),R.raw.alarm);
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         try {
             modbusSlave.startSlaveListener();
-        } catch (InterruptedException e) {
+            modbusSlave.getAllCoils().set(1,true);
+        } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
 
@@ -174,11 +185,20 @@ public class HouseAlarmActivity extends AppCompatActivity {
 
                                 if(modbusSlave.getAllCoils().get(0)){
                                     alarmLightTB.setImageResource(R.drawable.red_light);
-                                }else alarmLightTB.setImageResource(R.drawable.gray_light);
+                                    startVibrate();
+                                }else {
+                                    alarmLightTB.setImageResource(R.drawable.gray_light);
+                                    stopVibrate();
+                                }
 
                                 if(modbusSlave.getAllCoils().get(1)){
                                     alarmSound.setImageResource(R.drawable.iconfinder_speaker_volume_293647);
-                                }else alarmSound.setImageResource(R.drawable.iconfinder_speaker_293703);
+                                    mediaPlayer.start();
+                                }else {
+                                    alarmSound.setImageResource(R.drawable.iconfinder_speaker_293703);
+                                    mediaPlayer.stop();
+                                    mediaPlayer.prepare();
+                                }
 
                                 if(modbusSlave.getAllCoils().get(2)){
                                     alarmOnOff.setImageResource(R.drawable.alarm_on);
@@ -202,6 +222,23 @@ public class HouseAlarmActivity extends AppCompatActivity {
         super.onBackPressed();
         //modbusUpdater.interrupt();
         uiUpdater.removeCallbacksAndMessages(null);
+    }
+
+    private void startVibrate(){
+        long[] vibrationPattern = new long[]{0,200,500,200,500};
+        if(vibrator.hasVibrator() & !isVibrating){
+            vibrator.vibrate(vibrationPattern,1);
+            isVibrating = true;
+        }
+
+    }
+
+    private void stopVibrate(){
+        if(vibrator.hasVibrator() & isVibrating){
+            vibrator.cancel();
+            isVibrating = false;
+        }
+
     }
 }
 
