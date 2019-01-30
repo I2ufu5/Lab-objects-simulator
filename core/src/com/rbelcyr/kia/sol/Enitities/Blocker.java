@@ -52,7 +52,7 @@ public class Blocker extends Sprite{
         this.positionOpen = new Vector2(positionOpen.x/PIXELS_TO_METERS,positionOpen.y/PIXELS_TO_METERS);
         this.positionClose = new Vector2(positionClose.x/PIXELS_TO_METERS,positionClose.y/PIXELS_TO_METERS);
 
-        body.setTransform(positionClose.x/PIXELS_TO_METERS,positionClose.y/PIXELS_TO_METERS,0);
+        body.setTransform(positionClose.x/PIXELS_TO_METERS,positionClose.y/PIXELS_TO_METERS,bd.angle);
         }
 
     public Vector2 getPositionOpen() {

@@ -66,7 +66,8 @@ public class HeatPlantDAO {
 
 
         if(dataTemperature.size()>301){
-            graph.getViewport().setMinX(dataTemperature.get(dataTemperature.size()-1).getX()-30000);
+            //graph.getViewport().setMinX(dataTemperature.get(dataTemperature.size()-1).getX()-30000);
+            graph.getViewport().setMinX(dataTemperature.get(0).getX());
             graph.getViewport().setMaxX(dataTemperature.get(dataTemperature.size()-1).getX());
         } else{
             graph.getViewport().setMinX(dataTemperature.get(0).getX());
